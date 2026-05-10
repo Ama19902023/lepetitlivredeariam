@@ -23,7 +23,7 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "Le petit livre de Ariam — Histoires pour les petits rêveurs",
   description:
-    "Une collection tendre de livres illustrés pour accompagner les enfants de 2 à 8 ans dans leurs premières aventures et leurs grands rêves.",
+    "Une collection tendre de livres illustrés pour accompagner les enfants de 1 à 8 ans dans leurs émotions, leurs apprentissages et leurs grands rêves.",
 };
 
 export default function RootLayout({

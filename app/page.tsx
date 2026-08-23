@@ -1,231 +1,659 @@
 "use client";
 
+import { useState } from "react";
+
+type Product = {
+  id: number;
+  title: string;
+  category: string;
+  age: string;
+  price: string;
+  oldPrice?: string;
+  badge?: string;
+  background: string;
+  accent: string;
+};
+
+const products: Product[] = [
+  {
+    id: 1,
+    title: "La lune et le petit renard",
+    category: "Cahiers illustrés",
+    age: "Dès 3 ans",
+    price: "14,90 €",
+    badge: "NOUVEAU",
+    background: "#ead4ce",
+    accent: "#d77867",
+  },
+  {
+    id: 2,
+    title: "Mila au pays des nuages",
+    category: "Cahiers illustrés",
+    age: "Dès 4 ans",
+    price: "15,90 €",
+    badge: "NOUVEAU",
+    background: "#d6e4ef",
+    accent: "#7baac8",
+  },
+  {
+    id: 3,
+    title: "Le secret du jardin",
+    category: "Cahiers illustrés",
+    age: "Dès 2 ans",
+    price: "12,90 €",
+    badge: "COUP DE CŒUR",
+    background: "#d9e8d6",
+    accent: "#7da47d",
+  },
+  {
+    id: 4,
+    title: "Les couleurs d'Anouk",
+    category: "Premiers apprentissages",
+    age: "Dès 2 ans",
+    price: "13,90 €",
+    background: "#f2dfd0",
+    accent: "#d58b69",
+  },
+  {
+    id: 5,
+    title: "Mon premier imagier des animaux",
+    category: "Imagiers",
+    age: "12 / 36 mois",
+    price: "11,90 €",
+    background: "#f1e5be",
+    accent: "#cda950",
+  },
+  {
+    id: 6,
+    title: "J'apprends les chiffres",
+    category: "Apprentissages",
+    age: "Dès 3 ans",
+    price: "12,90 €",
+    background: "#dbe9ed",
+    accent: "#70a5b2",
+  },
+  {
+    id: 7,
+    title: "J'apprends les formes",
+    category: "Apprentissages",
+    age: "Dès 3 ans",
+    price: "12,90 €",
+    background: "#e9def0",
+    accent: "#9c80b1",
+  },
+  {
+    id: 8,
+    title: "Mes premières émotions",
+    category: "Émotions",
+    age: "Dès 2 ans",
+    price: "14,90 €",
+    background: "#f1ddd6",
+    accent: "#ca8375",
+  },
+];
+
+const packs: Product[] = [
+  {
+    id: 101,
+    title: "Pack Premiers apprentissages",
+    category: "Packs",
+    age: "2 / 4 ans",
+    price: "29,90 €",
+    oldPrice: "38,70 €",
+    badge: "-20%",
+    background: "#e4ecd9",
+    accent: "#819b6d",
+  },
+  {
+    id: 102,
+    title: "Pack Histoires du soir",
+    category: "Packs",
+    age: "3 / 6 ans",
+    price: "34,90 €",
+    oldPrice: "44,70 €",
+    badge: "-22%",
+    background: "#e5ddee",
+    accent: "#977dab",
+  },
+  {
+    id: 103,
+    title: "Pack Découverte",
+    category: "Packs",
+    age: "12 mois / 3 ans",
+    price: "26,90 €",
+    oldPrice: "35,70 €",
+    badge: "-25%",
+    background: "#efe0d0",
+    accent: "#bd8065",
+  },
+];
+
+const ageCategories = [
+  {
+    title: "12 / 18 mois",
+    subtitle: "Éveil & découverte",
+    background: "#f2e8cc",
+    number: "01",
+  },
+  {
+    title: "18 mois / 3 ans",
+    subtitle: "Motricité & vocabulaire",
+    background: "#e3ecd9",
+    number: "02",
+  },
+  {
+    title: "3 / 6 ans",
+    subtitle: "Apprentissage & autonomie",
+    background: "#dfe8ef",
+    number: "03",
+  },
+  {
+    title: "6 / 8 ans",
+    subtitle: "Lecture & réflexion",
+    background: "#ebe1ec",
+    number: "04",
+  },
+];
+
+const reviews = [
+  {
+    name: "Sarah",
+    text: "Très belle découverte. Les cahiers sont magnifiques et ma fille les réclame régulièrement.",
+  },
+  {
+    name: "Nadia",
+    text: "Les activités sont adaptées, les illustrations sont douces et la qualité est vraiment au rendez-vous.",
+  },
+  {
+    name: "Amélie",
+    text: "Très jolie boutique et produits soigneusement préparés. Mon fils adore ses nouveaux cahiers.",
+  },
+];
+
 export default function Home() {
-  const ageCategories = [
-    { label: "12 — 18 mois", emoji: "🌾", desc: "Éveil & découverte" },
-    { label: "18 mois — 3 ans", emoji: "🌱", desc: "Premières activités" },
-    { label: "3 — 6 ans", emoji: "🌸", desc: "Apprentissages" },
-    { label: "6 — 8 ans", emoji: "🍃", desc: "Lecture & autonomie" },
-  ];
-
-  const products = [
-    { title: "La lune et le petit renard", age: "3 — 6 ans", price: "14,90 €", placeholder: "🌙" },
-    { title: "Mila au pays des nuages", age: "4 — 7 ans", price: "15,90 €", placeholder: "☁️" },
-    { title: "Le secret du jardin", age: "2 — 5 ans", price: "12,90 €", placeholder: "🌿" },
-    { title: "Les couleurs d'Anouk", age: "3 — 6 ans", price: "14,90 €", placeholder: "🎨" },
-  ];
-
-  const reviews = [
-    { name: "Nawal", initials: "N", text: "Un travail remarquable. Mon fils en a 3 et il les adore. La qualité est irréprochable, je recommande vivement.", source: "Avis Google" },
-    { name: "Gwenaelle", initials: "G", text: "Excellent ! Je recommande à 1000%. Fait avec amour. Mes enfants sont fans, la qualité est incroyable !", source: "Avis Google" },
-    { name: "Aqsa", initials: "A", text: "Je suis amoureuse de ces livres ! Tellement faits avec amour. Ma fille les adore et y revient tous les soirs.", source: "Avis Google" },
-  ];
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <main className="bg-bone text-ink">
-      <div className="bg-ink text-paper overflow-hidden py-2 text-[0.78rem] tracking-wide">
-        <div className="flex animate-marquee whitespace-nowrap">
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex shrink-0 gap-16 px-8">
-              <span>· Livraison offerte dès 49€ ·</span>
-              <span>· Livres imprimés en France ·</span>
-              <span>· Faits main avec amour ·</span>
-              <span>· Papier responsable ·</span>
-              <span>· Livraison offerte dès 49€ ·</span>
-              <span>· Livres imprimés en France ·</span>
+    <main>
+      {/* ======================================================
+          BARRE SUPÉRIEURE
+      ====================================================== */}
+
+      <div className="topBenefits">
+        <div className="topBenefitsInner">
+          <span>
+            <b>♡</b>
+            Créé avec amour
+          </span>
+
+          <span>
+            <b>✦</b>
+            Activités éducatives
+          </span>
+
+          <span>
+            <b>♢</b>
+            Livraison offerte dès 49 €
+          </span>
+
+          <span>
+            <b>✓</b>
+            Paiement sécurisé
+          </span>
+        </div>
+      </div>
+
+      {/* ======================================================
+          HEADER
+      ====================================================== */}
+
+      <header className="siteHeader">
+        {/* Ligne logo */}
+
+        <div className="headerLogoRow">
+          <button
+            className="mobileMenuButton"
+            onClick={() => setMobileMenu(!mobileMenu)}
+            aria-label="Menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <a href="#" className="brandLogoCentered">
+            <img
+              src="/logo-ariam.png"
+              alt="Les Cahiers de Ariam"
+              className="brandLogoImageCentered"
+            />
+          </a>
+
+          <div className="headerActions headerActionsTop">
+            <button
+              className="iconButton"
+              onClick={() => setSearchOpen(!searchOpen)}
+              aria-label="Rechercher"
+            >
+              <SearchIcon />
+            </button>
+
+            <button className="iconButton desktopOnly" aria-label="Compte">
+              <AccountIcon />
+            </button>
+
+            <button className="iconButton cartButton" aria-label="Panier">
+              <CartIcon />
+              <span className="cartCount">0</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Ligne menu */}
+
+        <div className="headerNavRow">
+          <nav className="desktopNav">
+            <div className="navDropdown">
+              <button className="navLink">
+                Les cahiers <span>⌄</span>
+              </button>
+
+              <div className="dropdownMenu">
+                <div className="dropdownColumn">
+                  <span className="dropdownTitle">Par âge</span>
+
+                  <a href="#ages">12 / 18 mois</a>
+                  <a href="#ages">18 mois / 3 ans</a>
+                  <a href="#ages">3 / 6 ans</a>
+                  <a href="#ages">6 / 8 ans</a>
+                </div>
+
+                <div className="dropdownColumn">
+                  <span className="dropdownTitle">Collections</span>
+
+                  <a href="#products">Cahiers illustrés</a>
+                  <a href="#products">Imagiers</a>
+                  <a href="#products">Apprentissages</a>
+                  <a href="#products">Émotions</a>
+                </div>
+              </div>
             </div>
-          ))}
+
+            <a href="#new" className="navLink">
+              Nouveautés
+            </a>
+
+            <a href="#packs" className="navLink">
+              Les packs
+            </a>
+
+            <a href="#ages" className="navLink">
+              Par âge
+            </a>
+
+            <a href="#favorites" className="navLink">
+              Coups de cœur
+            </a>
+
+            <a href="#reviews" className="navLink">
+              Avis
+            </a>
+
+            <a href="#contact" className="navLink">
+              Contact
+            </a>
+          </nav>
         </div>
-      </div>
 
-      <nav className="sticky top-0 z-50 flex justify-between items-center px-[5vw] py-5 bg-bone/95 backdrop-blur-md border-b border-stone/10">
-        <a href="#" className="font-hand text-[1.6rem] text-terra leading-none">
-          Le petit livre <span className="text-ink">de Ariam</span>
-        </a>
-        <ul className="hidden lg:flex gap-10 list-none">
-          <li><a href="#collection" className="text-ink text-[0.85rem] tracking-wide hover:text-terra transition-colors">COLLECTION</a></li>
-          <li><a href="#ages" className="text-ink text-[0.85rem] tracking-wide hover:text-terra transition-colors">PAR ÂGE</a></li>
-          <li><a href="#histoire" className="text-ink text-[0.85rem] tracking-wide hover:text-terra transition-colors">NOTRE HISTOIRE</a></li>
-          <li><a href="#contact" className="text-ink text-[0.85rem] tracking-wide hover:text-terra transition-colors">CONTACT</a></li>
-        </ul>
-        <div className="flex items-center gap-4">
-          <button aria-label="Recherche" className="grid place-items-center w-9 h-9 rounded-full hover:bg-shell/60 transition-colors">
-            <span>🔍</span>
-          </button>
-          <button aria-label="Panier" className="grid place-items-center w-9 h-9 rounded-full hover:bg-shell/60 transition-colors relative">
-            <span>🛒</span>
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-terra text-paper text-[0.65rem] rounded-full flex items-center justify-center font-bold">0</span>
-          </button>
-        </div>
-      </nav>
+        {/* Recherche */}
 
-      <div className="text-center py-3 bg-paper/50 border-b border-stone/5">
-        <span className="font-hand text-[1.1rem] text-stone">Des histoires faites main pour grandir en douceur ♡</span>
-      </div>
+        {searchOpen && (
+          <div className="searchPanel">
+            <div className="searchContainer">
+              <SearchIcon />
 
-      <section className="px-[5vw] pt-16 pb-20 max-w-[1300px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="fade-up">
-            <span className="text-[0.72rem] tracking-[0.25em] uppercase text-stone mb-5 block">— Édition 2026 —</span>
-            <h1 className="font-display text-[clamp(2.4rem,5vw,4.2rem)] leading-[1.05] tracking-tight font-light mb-6">
-              Des histoires<br />
-              qui font <em className="italic text-terra font-normal">grandir</em><br />
-              les petits cœurs.
-            </h1>
-            <p className="text-[1.05rem] max-w-[440px] text-stone leading-relaxed mb-10">
-              Une collection tendre de livres illustrés pour accompagner les enfants de 1 à 8 ans dans leurs émotions, leurs apprentissages et leurs grands rêves.
-            </p>
-            <div className="flex flex-wrap gap-4 items-center">
-              <a href="#collection" className="inline-block px-7 py-3.5 bg-ink text-paper text-[0.9rem] tracking-wide hover:bg-terra transition-colors">
-                DÉCOUVRIR LA COLLECTION
-              </a>
-              <a href="#histoire" className="inline-block text-[0.9rem] tracking-wide text-ink underline underline-offset-8 decoration-1 hover:text-terra transition-colors">
-                Notre histoire
-              </a>
+              <input
+                autoFocus
+                type="search"
+                placeholder="Rechercher un cahier, une activité..."
+              />
+
+              <button onClick={() => setSearchOpen(false)}>Fermer</button>
             </div>
           </div>
+        )}
 
-          <div className="relative fade-up">
-            <div className="aspect-[4/5] photo-placeholder rounded-sm overflow-hidden relative">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-stone/40">
-                <span className="text-[5rem] mb-2">📖</span>
-                <span className="font-hand text-[1.3rem]">votre photo ici</span>
-              </div>
-              <div className="absolute top-5 left-5 bg-bone/90 backdrop-blur px-3 py-1.5 text-[0.7rem] tracking-widest uppercase">
-                Nouveauté
-              </div>
-            </div>
-            <span className="absolute -bottom-3 -right-3 bg-honey text-ink px-4 py-2 font-hand text-[1.1rem] rotate-[-3deg] shadow-sm">
-              édition collector ♡
+        {/* Menu mobile */}
+
+        {mobileMenu && (
+          <div className="mobileNav">
+            <a href="#products">Les cahiers</a>
+            <a href="#new">Nouveautés</a>
+            <a href="#packs">Les packs</a>
+            <a href="#ages">Par âge</a>
+            <a href="#favorites">Coups de cœur</a>
+            <a href="#reviews">Avis</a>
+            <a href="#contact">Contact</a>
+          </div>
+        )}
+      </header>
+
+      {/* ======================================================
+          HERO
+      ====================================================== */}
+
+      <section className="hero">
+        <div className="container heroGrid">
+          <div className="heroContent">
+            <span className="eyebrow">
+              Bienvenue chez Les Cahiers de Ariam
             </span>
-          </div>
-        </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-8 mt-20 pt-8 border-t border-stone/10 text-[0.8rem] text-stone tracking-wide">
-          <div className="flex items-center gap-2">
-            <span className="text-honey">★★★★★</span>
-            <span>4.9/5 — + 400 avis</span>
+            <h1>
+              Apprendre,
+              <br />
+              <em>jouer & grandir.</em>
+            </h1>
+
+            <p className="heroDescription">
+              Des cahiers illustrés et des activités éducatives conçus pour
+              accompagner les enfants de 12 mois à 8 ans dans leurs
+              découvertes, leur autonomie et leurs apprentissages.
+            </p>
+
+            <div className="heroButtons">
+              <a href="#products" className="button buttonDark">
+                Découvrir les cahiers
+              </a>
+
+              <a href="#ages" className="button buttonLight">
+                Choisir par âge
+              </a>
+            </div>
+
+            <div className="heroBenefits">
+              <span>★ 4,9 / 5</span>
+              <span>Activités éducatives</span>
+              <span>Supports réutilisables</span>
+              <span>Livraison rapide</span>
+            </div>
           </div>
-          <span className="hidden md:block w-1 h-1 bg-stone/30 rounded-full"></span>
-          <span>🇫🇷 Imprimé en France</span>
-          <span className="hidden md:block w-1 h-1 bg-stone/30 rounded-full"></span>
-          <span>🌿 Papier responsable</span>
-          <span className="hidden md:block w-1 h-1 bg-stone/30 rounded-full"></span>
-          <span>📦 Livraison sous 48h</span>
+
+          <div className="heroVisual">
+            <div className="heroCircle heroCircleLarge" />
+            <div className="heroCircle heroCircleSmall" />
+
+            <div className="heroBook heroBookBack">
+              <span className="miniBrand">Les Cahiers de Ariam</span>
+
+              <div className="cloudShape" />
+
+              <h3>
+                Mila au pays
+                <br />
+                des nuages
+              </h3>
+
+              <span className="bookAge">Dès 4 ans</span>
+            </div>
+
+            <div className="heroBook heroBookFront">
+              <span className="miniBrand">Les Cahiers de Ariam</span>
+
+              <div className="moonShape" />
+
+              <h3>
+                La lune et
+                <br />
+                le petit renard
+              </h3>
+
+              <span className="bookAge">Dès 3 ans</span>
+            </div>
+
+            <div className="heroSticker">
+              <strong>Nouveau</strong>
+              <span>à découvrir</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="ages" className="px-[5vw] py-20 bg-paper">
-        <div className="max-w-[1300px] mx-auto">
-          <div className="text-center mb-14">
-            <span className="text-[0.72rem] tracking-[0.25em] uppercase text-stone block mb-3">— Notre catalogue —</span>
-            <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-light">Choisir un livre par âge</h2>
+      {/* ======================================================
+          AVANTAGES
+      ====================================================== */}
+
+      <section className="benefitsBar">
+        <div className="container benefitsGrid">
+          <Benefit
+            number="01"
+            title="Activités ludiques"
+            text="Apprendre en s'amusant"
+          />
+
+          <Benefit
+            number="02"
+            title="Adaptés à chaque âge"
+            text="De 12 mois à 8 ans"
+          />
+
+          <Benefit
+            number="03"
+            title="Matériel de qualité"
+            text="Pensé pour être réutilisé"
+          />
+
+          <Benefit
+            number="04"
+            title="Livraison soignée"
+            text="France & Belgique"
+          />
+        </div>
+      </section>
+
+      {/* ======================================================
+          NOUVEAUTÉS
+      ====================================================== */}
+
+      <section id="new" className="section">
+        <div className="container">
+          <SectionHeader
+            kicker="Vient de sortir"
+            title="Nos nouveautés"
+            link="Voir tous les cahiers"
+          />
+
+          <div className="productGrid">
+            {products.slice(0, 4).map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
-            {ageCategories.map((cat) => (
-              <a key={cat.label} href="#collection" className="bg-bone border border-stone/10 rounded-sm p-8 md:p-10 aspect-[4/5] flex flex-col items-center justify-center text-center hover:border-terra/40 hover:bg-shell/30 transition-all group">
-                <span className="text-5xl md:text-6xl mb-5 group-hover:scale-110 transition-transform duration-500">{cat.emoji}</span>
-                <span className="font-display text-[1.05rem] md:text-[1.2rem] font-medium text-ink mb-1">{cat.label}</span>
-                <span className="text-[0.8rem] text-stone tracking-wide">{cat.desc}</span>
+        </div>
+      </section>
+
+      {/* ======================================================
+          PAR ÂGE
+      ====================================================== */}
+
+      <section id="ages" className="section softSection">
+        <div className="container">
+          <div className="centerHeader">
+            <span className="eyebrow">Choisir facilement</span>
+
+            <h2>Des activités pour chaque âge</h2>
+
+            <p>
+              Choisissez une tranche d'âge pour retrouver les cahiers et
+              activités adaptés au développement de votre enfant.
+            </p>
+          </div>
+
+          <div className="ageGrid">
+            {ageCategories.map((category) => (
+              <a
+                href="#products"
+                className="ageCard"
+                key={category.title}
+                style={{ backgroundColor: category.background }}
+              >
+                <span className="ageNumber">{category.number}</span>
+
+                <div>
+                  <h3>{category.title}</h3>
+                  <p>{category.subtitle}</p>
+                  <span className="ageLink">Découvrir →</span>
+                </div>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="collection" className="px-[5vw] py-20">
-        <div className="max-w-[1300px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-4">
-            <div>
-              <span className="text-[0.72rem] tracking-[0.25em] uppercase text-stone block mb-2">— Nos coups de cœur —</span>
-              <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-light">La collection</h2>
+      {/* ======================================================
+          COLLECTION
+      ====================================================== */}
+
+      <section id="products" className="section">
+        <div className="container">
+          <SectionHeader
+            kicker="Notre collection"
+            title="Les cahiers"
+            link="Voir toute la boutique"
+          />
+
+          <div className="productGrid">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================
+          UNIVERS
+      ====================================================== */}
+
+      <section className="editorialSection">
+        <div className="container editorialGrid">
+          <div className="editorialVisual">
+            <div className="editorialBook">
+              <span>Les Cahiers de Ariam</span>
+
+              <div className="leafDrawing">
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+
+              <strong>
+                Le secret
+                <br />
+                du jardin
+              </strong>
+
+              <small>Dès 2 ans</small>
             </div>
-            <a href="#" className="text-[0.85rem] tracking-wide text-stone underline underline-offset-4 hover:text-terra transition-colors">
-              Voir tous les livres →
+          </div>
+
+          <div className="editorialContent">
+            <span className="eyebrow">Apprendre autrement</span>
+
+            <h2>Des supports pensés pour les petits curieux</h2>
+
+            <p>
+              Nos cahiers associent découverte, manipulation et apprentissage
+              afin d'aider chaque enfant à progresser à son rythme.
+            </p>
+
+            <p>
+              Des univers doux et colorés pour travailler le vocabulaire, la
+              concentration, l'observation, la motricité et l'autonomie.
+            </p>
+
+            <a href="#products" className="textLink">
+              Découvrir notre univers →
             </a>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
-            {products.map((book) => (
-              <article key={book.title} className="group cursor-pointer">
-                <div className="aspect-[4/5] photo-placeholder mb-4 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center text-stone/30 text-[5rem]">
-                    {book.placeholder}
-                  </div>
-                  <button className="absolute bottom-3 left-3 right-3 bg-ink text-paper py-2.5 text-[0.75rem] tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all">
-                    Ajouter — {book.price}
-                  </button>
-                </div>
-                <div className="px-1">
-                  <h3 className="font-display text-[1.05rem] font-medium leading-tight mb-1">{book.title}</h3>
-                  <p className="text-[0.8rem] text-stone mb-2 tracking-wide">{book.age}</p>
-                  <p className="font-display text-[1rem] text-terra">{book.price}</p>
-                </div>
-              </article>
+      {/* ======================================================
+          PACKS
+      ====================================================== */}
+
+      <section id="packs" className="section">
+        <div className="container">
+          <SectionHeader
+            kicker="Plus avantageux"
+            title="Nos packs"
+            link="Voir tous les packs"
+          />
+
+          <div className="packGrid">
+            {packs.map((pack) => (
+              <ProductCard key={pack.id} product={pack} large />
             ))}
           </div>
         </div>
       </section>
 
-      <section id="histoire" className="px-[5vw] py-24 bg-paper">
-        <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div className="relative">
-            <div className="aspect-[4/5] photo-placeholder relative overflow-hidden">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-stone/30">
-                <span className="text-[5rem] mb-2">👩‍🎨</span>
-                <span className="font-hand text-[1.2rem]">portrait d&apos;Ariam</span>
-              </div>
-            </div>
-            <div className="absolute -bottom-4 -right-4 bg-bone px-5 py-3 shadow-sm">
-              <p className="font-hand text-[1.4rem] text-terra leading-none">— Ariam</p>
-            </div>
-          </div>
-          <div>
-            <span className="text-[0.72rem] tracking-[0.25em] uppercase text-stone block mb-3">— Notre histoire —</span>
-            <h2 className="font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-light leading-tight mb-8">
-              Tout a commencé avec une<br />
-              <em className="italic text-terra">petite fille</em> qui s&apos;appelait Ariam.
-            </h2>
-            <div className="space-y-5 text-stone text-[1rem] leading-relaxed">
-              <p>Chaque soir, je lui inventais des histoires pour l&apos;endormir. Des renards malins, des lunes complices, des jardins enchantés.</p>
-              <p>Un jour, j&apos;ai eu envie de partager ces histoires avec d&apos;autres enfants. C&apos;est ainsi qu&apos;est née notre petite maison d&apos;édition, faite avec beaucoup d&apos;amour.</p>
-            </div>
-            <div className="mt-10 pt-8 border-t border-stone/15 grid grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="font-display text-[1.6rem] text-terra">100%</div>
-                <div className="text-[0.75rem] text-stone tracking-wide mt-1">Made in France</div>
-              </div>
-              <div>
-                <div className="font-display text-[1.6rem] text-terra">FSC</div>
-                <div className="text-[0.75rem] text-stone tracking-wide mt-1">Papier responsable</div>
-              </div>
-              <div>
-                <div className="font-display text-[1.6rem] text-terra">★ 4.9</div>
-                <div className="text-[0.75rem] text-stone tracking-wide mt-1">+ 400 avis Google</div>
-              </div>
-            </div>
+      {/* ======================================================
+          COUPS DE CŒUR
+      ====================================================== */}
+
+      <section id="favorites" className="section softSection">
+        <div className="container">
+          <SectionHeader
+            kicker="Les préférés"
+            title="Coups de cœur"
+            link="Tout découvrir"
+          />
+
+          <div className="productGrid">
+            {[products[2], products[0], products[5], products[7]].map(
+              (product) => (
+                <ProductCard key={product.id} product={product} />
+              )
+            )}
           </div>
         </div>
       </section>
 
-      <section className="px-[5vw] py-20">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-14">
-            <span className="text-[0.72rem] tracking-[0.25em] uppercase text-stone block mb-3">— Vos avis —</span>
-            <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-light">Ce que disent les familles</h2>
+      {/* ======================================================
+          AVIS
+      ====================================================== */}
+
+      <section id="reviews" className="reviewsSection">
+        <div className="container">
+          <div className="centerHeader">
+            <span className="eyebrow">Ils nous font confiance</span>
+
+            <h2>Vos avis</h2>
+
+            <div className="rating">
+              <span>★★★★★</span>
+              <strong>4,9 / 5</strong>
+              <small>plus de 400 avis</small>
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {reviews.map((review, i) => (
-              <article key={i} className="bg-paper p-8 border border-stone/10">
-                <div className="text-honey text-[0.95rem] mb-4 tracking-widest">★★★★★</div>
-                <p className="text-ink text-[0.95rem] leading-relaxed mb-6 font-light italic">&ldquo;{review.text}&rdquo;</p>
-                <div className="flex items-center gap-3 pt-5 border-t border-stone/10">
-                  <div className="w-9 h-9 rounded-full bg-blush flex items-center justify-center font-display text-terra text-[0.95rem]">
-                    {review.initials}
+
+          <div className="reviewsGrid">
+            {reviews.map((review) => (
+              <article className="reviewCard" key={review.name}>
+                <div className="reviewStars">★★★★★</div>
+
+                <p>“{review.text}”</p>
+
+                <div className="reviewAuthor">
+                  <div className="reviewAvatar">
+                    {review.name.charAt(0)}
                   </div>
+
                   <div>
-                    <div className="font-medium text-[0.85rem]">{review.name}</div>
-                    <div className="text-[0.7rem] text-stone tracking-wide">{review.source}</div>
+                    <strong>{review.name}</strong>
+                    <span>Acheteuse vérifiée</span>
                   </div>
                 </div>
               </article>
@@ -234,80 +662,289 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-[5vw] py-24 bg-shell/40">
-        <div className="max-w-[600px] mx-auto text-center">
-          <span className="text-[0.72rem] tracking-[0.25em] uppercase text-stone block mb-3">— Newsletter —</span>
-          <h2 className="font-display text-[clamp(1.6rem,3vw,2.2rem)] font-light mb-4">
-            Recevez nos nouveautés<br />
-            <em className="italic text-terra">directement par mail</em>
-          </h2>
-          <p className="text-stone text-[0.95rem] mb-8 leading-relaxed">Une lettre douce une fois par mois.<br />Et un livre numérique offert pour vous remercier ♡</p>
+      {/* ======================================================
+          NEWSLETTER
+      ====================================================== */}
+
+      <section className="newsletterSection">
+        <div className="container newsletter">
+          <div>
+            <span className="eyebrow">Le courrier d'Ariam</span>
+
+            <h2>Recevez nos nouveautés</h2>
+
+            <p>
+              Nouveaux cahiers, idées d'activités et offres directement dans
+              votre boîte mail.
+            </p>
+          </div>
+
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const btn = e.currentTarget.querySelector("button");
-              if (btn) btn.textContent = "Merci ♡";
-            }}
-            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+            className="newsletterForm"
+            onSubmit={(event) => event.preventDefault()}
           >
-            <input
-              type="email"
-              placeholder="votre@email.fr"
-              required
-              className="flex-1 px-5 py-3.5 bg-bone border border-stone/20 text-ink placeholder:text-stone/50 outline-none focus:border-terra transition-colors text-[0.9rem]"
-            />
-            <button
-              type="submit"
-              className="px-7 py-3.5 bg-ink text-paper text-[0.85rem] tracking-wide hover:bg-terra transition-colors"
-            >
-              JE M&apos;INSCRIS
-            </button>
+            <input type="email" placeholder="Votre adresse e-mail" />
+
+            <button type="submit">Je m'inscris</button>
           </form>
         </div>
       </section>
 
-      <footer id="contact" className="bg-ink text-paper px-[5vw] pt-20 pb-8">
-        <div className="max-w-[1300px] mx-auto">
-          <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-16">
-            <div>
-              <div className="font-hand text-[1.7rem] text-honey mb-4 leading-none">Le petit livre de Ariam</div>
-              <p className="text-paper/60 text-[0.88rem] max-w-xs leading-relaxed mb-6">
-                Des histoires tendres pour les petits rêveurs, imprimées avec soin en France.
+      {/* ======================================================
+          FOOTER
+      ====================================================== */}
+
+      <footer id="contact" className="footer">
+        <div className="container">
+          <div className="footerGrid">
+            <div className="footerBrand">
+              <img
+                src="/logo-ariam.png"
+                alt="Les Cahiers de Ariam"
+                className="footerLogo"
+              />
+
+              <p>
+                Des cahiers tendres, éducatifs et colorés pour accompagner les
+                enfants dans leurs premières découvertes.
               </p>
             </div>
-            <div>
-              <h4 className="text-[0.75rem] tracking-[0.2em] uppercase mb-5">Boutique</h4>
-              <ul className="space-y-3 text-paper/70 text-[0.88rem]">
-                <li><a href="#collection" className="hover:text-honey transition-colors">Tous les livres</a></li>
-                <li><a href="#ages" className="hover:text-honey transition-colors">Par âge</a></li>
-                <li><a href="#" className="hover:text-honey transition-colors">Coffrets cadeau</a></li>
-                <li><a href="#" className="hover:text-honey transition-colors">Nouveautés</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[0.75rem] tracking-[0.2em] uppercase mb-5">Maison</h4>
-              <ul className="space-y-3 text-paper/70 text-[0.88rem]">
-                <li><a href="#histoire" className="hover:text-honey transition-colors">Notre histoire</a></li>
-                <li><a href="#" className="hover:text-honey transition-colors">Avis clients</a></li>
-                <li><a href="#" className="hover:text-honey transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[0.75rem] tracking-[0.2em] uppercase mb-5">Aide</h4>
-              <ul className="space-y-3 text-paper/70 text-[0.88rem]">
-                <li><a href="#" className="hover:text-honey transition-colors">Livraison</a></li>
-                <li><a href="#" className="hover:text-honey transition-colors">Retours</a></li>
-                <li><a href="#" className="hover:text-honey transition-colors">CGV</a></li>
-                <li><a href="#" className="hover:text-honey transition-colors">Mentions légales</a></li>
-              </ul>
-            </div>
+
+            <FooterColumn
+              title="Boutique"
+              items={[
+                "Tous les cahiers",
+                "Nouveautés",
+                "Les packs",
+                "Par âge",
+                "Coups de cœur",
+              ]}
+            />
+
+            <FooterColumn
+              title="Les Cahiers de Ariam"
+              items={[
+                "Notre histoire",
+                "Nos engagements",
+                "Vos avis",
+                "Contact",
+              ]}
+            />
+
+            <FooterColumn
+              title="Aide & informations"
+              items={[
+                "Livraison",
+                "Retours",
+                "Questions fréquentes",
+                "CGV",
+                "Mentions légales",
+                "Confidentialité",
+              ]}
+            />
           </div>
-          <div className="border-t border-paper/15 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[0.75rem] text-paper/50 tracking-wide">
-            <span>© 2026 Le petit livre de Ariam</span>
+
+          <div className="footerBottom">
+            <span>© 2026 Les Cahiers de Ariam</span>
             <span>Fait avec ♡ en France</span>
           </div>
         </div>
       </footer>
     </main>
+  );
+}
+
+/* ============================================================
+   COMPONENTS
+============================================================ */
+
+function Benefit({
+  number,
+  title,
+  text,
+}: {
+  number: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="benefit">
+      <span className="benefitIcon">{number}</span>
+
+      <div>
+        <strong>{title}</strong>
+        <span>{text}</span>
+      </div>
+    </div>
+  );
+}
+
+function SectionHeader({
+  kicker,
+  title,
+  link,
+}: {
+  kicker: string;
+  title: string;
+  link: string;
+}) {
+  return (
+    <div className="sectionHeader">
+      <div>
+        <span className="eyebrow">{kicker}</span>
+        <h2>{title}</h2>
+      </div>
+
+      <a href="#" className="sectionLink">
+        {link} →
+      </a>
+    </div>
+  );
+}
+
+function ProductCard({
+  product,
+  large = false,
+}: {
+  product: Product;
+  large?: boolean;
+}) {
+  return (
+    <article className={`productCard ${large ? "largeProductCard" : ""}`}>
+      <div
+        className="productVisual"
+        style={{
+          backgroundColor: product.background,
+        }}
+      >
+        {product.badge && (
+          <span className="productBadge">{product.badge}</span>
+        )}
+
+        <button
+          className="favoriteButton"
+          aria-label="Ajouter aux favoris"
+        >
+          ♡
+        </button>
+
+        <div
+          className="bookMockup"
+          style={{
+            borderColor: product.accent,
+          }}
+        >
+          <span className="bookMockupBrand">
+            Les Cahiers
+            <br />
+            de Ariam
+          </span>
+
+          <div
+            className="bookMockupSymbol"
+            style={{
+              backgroundColor: product.accent,
+            }}
+          />
+
+          <strong>{product.title}</strong>
+
+          <small>{product.age}</small>
+        </div>
+      </div>
+
+      <div className="productInfo">
+        <span className="productCategory">{product.category}</span>
+
+        <h3>{product.title}</h3>
+
+        <div className="productBottom">
+          <div className="prices">
+            {product.oldPrice && (
+              <span className="oldPrice">{product.oldPrice}</span>
+            )}
+
+            <strong>{product.price}</strong>
+          </div>
+
+          <button className="addButton" aria-label="Ajouter au panier">
+            +
+          </button>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function FooterColumn({
+  title,
+  items,
+}: {
+  title: string;
+  items: string[];
+}) {
+  return (
+    <div className="footerColumn">
+      <h4>{title}</h4>
+
+      {items.map((item) => (
+        <a href="#" key={item}>
+          {item}
+        </a>
+      ))}
+    </div>
+  );
+}
+
+/* ============================================================
+   ICONS
+============================================================ */
+
+function SearchIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="21"
+      height="21"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+    >
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-4-4" />
+    </svg>
+  );
+}
+
+function AccountIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="21"
+      height="21"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+    >
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4.5 21c.8-4.5 3.2-6.5 7.5-6.5s6.7 2 7.5 6.5" />
+    </svg>
+  );
+}
+
+function CartIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="22"
+      height="22"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+    >
+      <path d="M3 4h2l2.2 10.3a2 2 0 0 0 2 1.7h7.9a2 2 0 0 0 2-1.7L21 7H6" />
+      <circle cx="9" cy="20" r="1" />
+      <circle cx="18" cy="20" r="1" />
+    </svg>
   );
 }

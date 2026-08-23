@@ -1,29 +1,10 @@
 import type { Metadata } from "next";
-import { Fraunces, Caveat, Nunito } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  display: "swap",
-});
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Le petit livre de Ariam — Histoires pour les petits rêveurs",
+  title: "Le petit livre de Ariam",
   description:
-    "Une collection tendre de livres illustrés pour accompagner les enfants de 1 à 8 ans dans leurs émotions, leurs apprentissages et leurs grands rêves.",
+    "Livres jeunesse illustrés et activités éducatives pour les enfants de 12 mois à 8 ans.",
 };
 
 export default function RootLayout({
@@ -33,11 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body
-        className={`${fraunces.variable} ${caveat.variable} ${nunito.variable}`}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -3,7 +3,6 @@
 :root {
   --ink: #403228;
   --ink-soft: #756359;
-
   --white: #ffffff;
 
   --terracotta: #bd7c67;
@@ -95,6 +94,7 @@ img {
   display: flex;
   align-items: center;
   gap: 7px;
+
   white-space: nowrap;
 }
 
@@ -136,15 +136,10 @@ img {
   box-shadow: 0 2px 16px rgba(64, 50, 40, 0.025);
 }
 
-/* ============================================================
-   LOGO CENTRÉ ET PLUS GRAND
-============================================================ */
-
 .headerLogoRow {
   position: relative;
 
   width: min(1400px, calc(100% - 60px));
-
   height: 190px;
 
   margin: 0 auto;
@@ -176,7 +171,7 @@ img {
 }
 
 /* ============================================================
-   ACTIONS À DROITE
+   HEADER ACTIONS
 ============================================================ */
 
 .headerActions {
@@ -245,7 +240,7 @@ img {
 }
 
 /* ============================================================
-   NAVIGATION
+   NAV
 ============================================================ */
 
 .headerNavRow {
@@ -377,7 +372,6 @@ img {
 
   left: 0;
   right: 0;
-
   top: 248px;
 
   background: #ffffff;
@@ -427,93 +421,22 @@ img {
 }
 
 /* ============================================================
-   HERO
+   GENERIC
 ============================================================ */
-
-.hero {
-  overflow: hidden;
-
-  background: #ffffff;
-
-  border-bottom: 1px solid #f2eeea;
-}
-
-.heroGrid {
-  min-height: 610px;
-
-  display: grid;
-  grid-template-columns: 52% 48%;
-
-  align-items: center;
-}
-
-.heroContent {
-  position: relative;
-
-  z-index: 4;
-
-  padding: 70px 0 70px 30px;
-}
 
 .eyebrow {
   display: block;
 
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 
   color: var(--terracotta);
 
   font-size: 11px;
   font-weight: 700;
 
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
 
   text-transform: uppercase;
-}
-
-.hero h1 {
-  max-width: 700px;
-
-  margin: 0;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: clamp(50px, 5vw, 76px);
-
-  font-weight: 400;
-
-  line-height: 1.02;
-
-  letter-spacing: -0.035em;
-}
-
-.hero h1 em {
-  color: var(--terracotta);
-
-  font-weight: 400;
-}
-
-.heroDescription {
-  max-width: 670px;
-
-  margin-top: 28px;
-
-  color: var(--ink-soft);
-
-  font-size: 17px;
-
-  line-height: 1.85;
-}
-
-.heroButtons {
-  margin-top: 32px;
-
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 13px;
 }
 
 .button {
@@ -522,7 +445,6 @@ img {
   padding: 0 27px;
 
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
@@ -545,7 +467,6 @@ img {
 
 .buttonDark {
   background: var(--ink);
-
   color: white;
 }
 
@@ -555,9 +476,7 @@ img {
 
 .buttonLight {
   border: 1px solid var(--ink);
-
   background: white;
-
   color: var(--ink);
 }
 
@@ -565,219 +484,146 @@ img {
   background: #fafafa;
 }
 
-.heroBenefits {
-  margin-top: 34px;
+/* ============================================================
+   NEW HERO
+============================================================ */
+
+.realHero {
+  background: #ffffff;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.realHeroGrid {
+  min-height: 680px;
+
+  display: grid;
+  grid-template-columns: 44% 56%;
+
+  align-items: center;
+
+  gap: 60px;
+
+  padding-top: 55px;
+  padding-bottom: 55px;
+}
+
+.realHeroContent {
+  padding-left: 30px;
+}
+
+.realHeroContent h1 {
+  margin: 0;
+
+  max-width: 650px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(50px, 5vw, 76px);
+
+  font-weight: 400;
+
+  line-height: 1.02;
+
+  letter-spacing: -0.035em;
+}
+
+.realHeroContent h1 em {
+  color: var(--terracotta);
+
+  font-weight: 400;
+}
+
+.realHeroContent > p {
+  max-width: 610px;
+
+  margin: 28px 0 0;
+
+  color: var(--ink-soft);
+
+  font-size: 17px;
+
+  line-height: 1.85;
+}
+
+.heroButtons {
+  margin-top: 32px;
 
   display: flex;
   flex-wrap: wrap;
 
-  gap: 23px;
+  gap: 13px;
+}
 
-  color: #77675c;
+.realHeroMini {
+  margin-top: 30px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  color: #756359;
 
   font-size: 12px;
 }
 
-/* ============================================================
-   HERO VISUEL
-============================================================ */
-
-.heroVisual {
+.realHeroImage {
   position: relative;
 
-  height: 610px;
+  width: 100%;
+  height: 570px;
+
+  overflow: hidden;
+
+  background: #f8f8f8;
 }
 
-.heroCircle {
+.realHeroImage img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.realHeroBadge {
   position: absolute;
 
-  border-radius: 50%;
-}
+  left: 24px;
+  bottom: 24px;
 
-.heroCircleLarge {
-  width: 390px;
-  height: 390px;
-
-  right: 15px;
-  top: 95px;
-
-  background: #eef5f7;
-
-  opacity: 0.9;
-}
-
-.heroCircleSmall {
-  width: 190px;
-  height: 190px;
-
-  left: 40px;
-  bottom: 50px;
-
-  background: #faeeee;
-
-  opacity: 0.9;
-}
-
-.heroBook {
-  position: absolute;
-
-  width: 270px;
-  height: 365px;
-
-  padding: 29px 24px;
-
-  border-radius: 4px;
+  padding: 15px 18px;
 
   display: flex;
   flex-direction: column;
 
-  align-items: center;
+  gap: 3px;
 
-  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
 
-  box-shadow: 0 25px 45px rgba(63, 48, 37, 0.15);
+  box-shadow: 0 10px 25px rgba(50, 40, 30, 0.08);
 }
 
-.heroBookBack {
-  right: 28px;
-  top: 85px;
-
-  background: #cedfeb;
-
-  transform: rotate(8deg);
-}
-
-.heroBookFront {
-  left: 72px;
-  bottom: 55px;
-
-  z-index: 3;
-
-  background: #e7c8bf;
-
-  transform: rotate(-7deg);
-}
-
-.miniBrand {
-  color: #775f50;
-
+.realHeroBadge strong {
   font-family: Georgia, serif;
+
+  font-size: 19px;
+
+  font-weight: 400;
+}
+
+.realHeroBadge span {
+  color: var(--ink-soft);
 
   font-size: 11px;
 }
 
-.heroBook h3 {
-  margin: auto 0 18px;
-
-  font-family: Georgia, serif;
-
-  font-size: 27px;
-  font-weight: 400;
-
-  line-height: 1.18;
-}
-
-.bookAge {
-  padding: 6px 12px;
-
-  border-radius: 20px;
-
-  background: rgba(255, 255, 255, 0.75);
-
-  font-size: 10px;
-}
-
-.moonShape {
-  width: 76px;
-  height: 76px;
-
-  margin-top: 52px;
-
-  border-radius: 50%;
-
-  background: #e0b35f;
-
-  box-shadow: inset 21px 0 0 #e7c8bf;
-}
-
-.cloudShape {
-  position: relative;
-
-  width: 80px;
-  height: 30px;
-
-  margin-top: 62px;
-
-  border-radius: 30px;
-
-  background: white;
-}
-
-.cloudShape::before,
-.cloudShape::after {
-  content: "";
-
-  position: absolute;
-
-  border-radius: 50%;
-
-  background: white;
-}
-
-.cloudShape::before {
-  width: 38px;
-  height: 38px;
-
-  left: 12px;
-  top: -18px;
-}
-
-.cloudShape::after {
-  width: 29px;
-  height: 29px;
-
-  right: 8px;
-  top: -11px;
-}
-
-.heroSticker {
-  position: absolute;
-
-  right: 12px;
-  bottom: 65px;
-
-  z-index: 5;
-
-  width: 105px;
-  height: 105px;
-
-  border-radius: 50%;
-
-  background: #f1d88e;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  transform: rotate(8deg);
-
-  box-shadow: 0 10px 25px rgba(50, 40, 30, 0.1);
-}
-
-.heroSticker strong {
-  font-family: Georgia, serif;
-}
-
-.heroSticker span {
-  margin-top: 4px;
-
-  font-size: 10px;
-}
-
 /* ============================================================
-   AVANTAGES
+   BENEFITS
 ============================================================ */
 
 .benefitsBar {
@@ -865,12 +711,8 @@ img {
 ============================================================ */
 
 .section {
-  padding: 90px 0;
+  padding: 95px 0;
 
-  background: white;
-}
-
-.softSection {
   background: white;
 }
 
@@ -890,7 +732,8 @@ img {
 
 .sectionHeader h2,
 .centerHeader h2,
-.editorialContent h2,
+.featureContent h2,
+.imageStoryContent h2,
 .newsletter h2 {
   margin: 0;
 
@@ -917,15 +760,11 @@ img {
 }
 
 .centerHeader {
-  max-width: 680px;
+  max-width: 720px;
 
-  margin: 0 auto 47px;
+  margin: 0 auto 50px;
 
   text-align: center;
-}
-
-.centerHeader .eyebrow {
-  margin-bottom: 10px;
 }
 
 .centerHeader p {
@@ -937,44 +776,56 @@ img {
 }
 
 /* ============================================================
-   PRODUITS
+   REAL PRODUCT CARDS
 ============================================================ */
 
-.productGrid {
+.realProductGrid {
   display: grid;
 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
-  gap: 40px 20px;
+  gap: 52px 24px;
 }
 
-.productCard {
+.realProductCard {
   background: white;
 }
 
-.productVisual {
+.realProductImageWrap {
   position: relative;
 
-  height: 350px;
+  height: 420px;
 
   overflow: hidden;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #f6f6f6;
 }
 
-.productBadge {
+.realProductImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.4s ease;
+}
+
+.realProductCard:hover .realProductImage {
+  transform: scale(1.025);
+}
+
+.realProductBadge {
   position: absolute;
 
-  left: 14px;
-  top: 14px;
+  z-index: 3;
 
-  z-index: 4;
+  top: 15px;
+  left: 15px;
 
-  padding: 7px 10px;
+  padding: 8px 11px;
 
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
 
   color: var(--ink);
 
@@ -982,99 +833,16 @@ img {
   font-weight: 700;
 
   letter-spacing: 0.1em;
+
+  text-transform: uppercase;
 }
 
-.favoriteButton {
-  position: absolute;
-
-  right: 14px;
-  top: 14px;
-
-  z-index: 4;
-
-  width: 36px;
-  height: 36px;
-
-  border: 0;
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.9);
-
-  color: var(--ink);
-
-  font-size: 21px;
+.realProductInfo {
+  padding: 18px 3px 0;
 }
 
-.bookMockup {
-  width: 160px;
-  height: 225px;
-
-  padding: 20px 16px;
-
-  border: 2px solid;
-
-  border-radius: 3px;
-
-  background: rgba(255, 255, 255, 0.82);
-
-  box-shadow: 10px 18px 29px rgba(55, 44, 34, 0.14);
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  text-align: center;
-
-  transition: transform 0.3s ease;
-}
-
-.productCard:hover .bookMockup {
-  transform: translateY(-7px);
-}
-
-.bookMockupBrand {
-  color: #806c5e;
-
-  font-family: Georgia, serif;
-
-  font-size: 9px;
-
-  line-height: 1.2;
-}
-
-.bookMockupSymbol {
-  width: 42px;
-  height: 42px;
-
-  margin: 35px 0 20px;
-
-  border-radius: 50%;
-}
-
-.bookMockup strong {
-  font-family: Georgia, serif;
-
-  font-size: 15px;
-  font-weight: 400;
-
-  line-height: 1.2;
-}
-
-.bookMockup small {
-  margin-top: auto;
-
-  font-size: 8px;
-}
-
-.productInfo {
-  padding: 17px 3px 0;
-
-  background: white;
-}
-
-.productCategory {
-  color: #a17b67;
+.realProductInfo > span {
+  color: var(--terracotta);
 
   font-size: 9px;
   font-weight: 700;
@@ -1084,123 +852,204 @@ img {
   text-transform: uppercase;
 }
 
-.productInfo h3 {
-  min-height: 48px;
-
-  margin: 7px 0 11px;
+.realProductInfo h3 {
+  margin: 8px 0 10px;
 
   font-family: Georgia, serif;
 
-  font-size: 17px;
+  font-size: 22px;
+
   font-weight: 400;
-
-  line-height: 1.35;
 }
 
-.productBottom {
-  display: flex;
+.realProductInfo p {
+  min-height: 50px;
 
-  align-items: center;
+  margin: 0;
 
-  justify-content: space-between;
+  color: var(--ink-soft);
+
+  font-size: 13px;
+
+  line-height: 1.7;
 }
 
-.prices {
-  display: flex;
+.realProductInfo a {
+  display: inline-block;
 
-  align-items: center;
+  margin-top: 17px;
 
-  gap: 8px;
-}
+  padding-bottom: 5px;
 
-.prices strong {
-  font-size: 14px;
-}
+  border-bottom: 1px solid var(--ink);
 
-.oldPrice {
-  color: #958479;
+  font-size: 11px;
+  font-weight: 700;
 
-  font-size: 12px;
+  letter-spacing: 0.05em;
 
-  text-decoration: line-through;
-}
-
-.addButton {
-  width: 36px;
-  height: 36px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 50%;
-
-  background: white;
-
-  color: var(--ink);
-
-  font-size: 20px;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.addButton:hover {
-  background: var(--ink);
-
-  color: white;
+  text-transform: uppercase;
 }
 
 /* ============================================================
-   ÂGES
+   FEATURE SECTIONS
 ============================================================ */
 
-.ageGrid {
+.featureSection {
+  padding: 105px 0;
+
+  background: #ffffff;
+
+  border-top: 1px solid #f0ebe6;
+  border-bottom: 1px solid #f0ebe6;
+}
+
+.alternateFeature {
+  background: #ffffff;
+}
+
+.featureGrid {
   display: grid;
 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 58% 42%;
 
-  gap: 18px;
+  align-items: center;
+
+  gap: 75px;
 }
 
-.ageCard {
-  min-height: 255px;
-
-  padding: 28px;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+.featureGridReverse {
+  grid-template-columns: 42% 58%;
 }
 
-.ageCard:hover {
-  transform: translateY(-5px);
+.featureImages {
+  position: relative;
 
-  box-shadow: 0 15px 30px rgba(60, 45, 35, 0.07);
+  min-height: 650px;
 }
 
-.ageNumber {
-  width: 43px;
-  height: 43px;
+.featureMainImage {
+  position: absolute;
 
-  border-radius: 50%;
+  left: 0;
+  top: 0;
+
+  width: 74%;
+  height: 590px;
+
+  object-fit: cover;
+
+  box-shadow: 0 20px 50px rgba(60, 45, 35, 0.1);
+}
+
+.featureSecondImage {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 52%;
+  height: 360px;
+
+  object-fit: cover;
+
+  border: 10px solid white;
+
+  box-shadow: 0 20px 45px rgba(60, 45, 35, 0.13);
+}
+
+.featureContent {
+  max-width: 530px;
+}
+
+.featureContent > p {
+  margin: 25px 0 0;
+
+  color: var(--ink-soft);
+
+  font-size: 16px;
+
+  line-height: 1.9;
+}
+
+.featureList {
+  margin: 25px 0 32px;
+
+  padding: 0;
+
+  list-style: none;
 
   display: grid;
-  place-items: center;
 
-  background: rgba(255, 255, 255, 0.82);
-
-  font-family: Georgia, serif;
-
-  font-size: 12px;
+  gap: 11px;
 }
 
-.ageCard h3 {
-  margin: 0 0 8px;
+.featureList li {
+  position: relative;
+
+  padding-left: 20px;
+
+  color: #665448;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+.featureList li::before {
+  content: "✓";
+
+  position: absolute;
+
+  left: 0;
+
+  color: var(--terracotta);
+}
+
+/* ============================================================
+   UNIVERSE
+============================================================ */
+
+.universeSection {
+  background: #ffffff;
+}
+
+.universeGrid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+.universeCard {
+  background: white;
+}
+
+.universeCard img {
+  width: 100%;
+  height: 380px;
+
+  object-fit: cover;
+}
+
+.universeCard > div {
+  padding: 20px 2px 0;
+}
+
+.universeCard span {
+  color: var(--terracotta);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+}
+
+.universeCard h3 {
+  margin: 7px 0 8px;
 
   font-family: Georgia, serif;
 
@@ -1209,173 +1058,41 @@ img {
   font-weight: 400;
 }
 
-.ageCard p {
-  margin: 0 0 20px;
+.universeCard p {
+  margin: 0;
 
   color: var(--ink-soft);
 
   font-size: 13px;
 
-  line-height: 1.6;
-}
-
-.ageLink {
-  font-size: 11px;
-  font-weight: 700;
-
-  letter-spacing: 0.06em;
-
-  text-transform: uppercase;
+  line-height: 1.7;
 }
 
 /* ============================================================
-   ÉDITORIAL
+   IMAGE STORY
 ============================================================ */
 
-.editorialSection {
+.imageStorySection {
   padding: 100px 0;
 
-  background: white;
+  background: #ffffff;
 
-  border-top: 1px solid #f2eeea;
-  border-bottom: 1px solid #f2eeea;
+  border-top: 1px solid var(--border);
 }
 
-.editorialGrid {
+.imageStoryGrid {
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
-
-  gap: 80px;
-
-  align-items: center;
-}
-
-.editorialVisual {
-  min-height: 520px;
-
-  display: grid;
-
-  place-items: center;
-
-  background: #e8f0e5;
-}
-
-.editorialBook {
-  width: 270px;
-  height: 380px;
-
-  padding: 27px;
-
-  background: white;
-
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: 38% 62%;
 
   align-items: center;
 
-  text-align: center;
-
-  box-shadow: 15px 25px 40px rgba(58, 47, 38, 0.15);
-
-  transform: rotate(-5deg);
+  gap: 70px;
 }
 
-.editorialBook > span {
-  color: #806b5c;
+.imageStoryContent p {
+  margin-top: 23px;
 
-  font-family: Georgia, serif;
-
-  font-size: 11px;
-}
-
-.editorialBook strong {
-  margin-top: auto;
-
-  font-family: Georgia, serif;
-
-  font-size: 26px;
-
-  font-weight: 400;
-
-  line-height: 1.15;
-}
-
-.editorialBook small {
-  margin-top: 25px;
-
-  font-size: 10px;
-}
-
-.leafDrawing {
-  position: relative;
-
-  width: 100px;
-  height: 120px;
-
-  margin-top: 45px;
-}
-
-.leafDrawing::before {
-  content: "";
-
-  position: absolute;
-
-  left: 49px;
-  top: 5px;
-
-  width: 2px;
-  height: 106px;
-
-  background: #7b9c74;
-
-  transform: rotate(10deg);
-}
-
-.leafDrawing span {
-  position: absolute;
-
-  width: 40px;
-  height: 19px;
-
-  border-radius: 100% 0 100% 0;
-
-  background: #91ae86;
-}
-
-.leafDrawing span:nth-child(1) {
-  left: 8px;
-  top: 24px;
-
-  transform: rotate(24deg);
-}
-
-.leafDrawing span:nth-child(2) {
-  right: 5px;
-  top: 45px;
-
-  transform: rotate(-18deg);
-}
-
-.leafDrawing span:nth-child(3) {
-  left: 4px;
-  top: 68px;
-
-  transform: rotate(20deg);
-}
-
-.leafDrawing span:nth-child(4) {
-  right: 7px;
-  top: 87px;
-
-  transform: rotate(-18deg);
-}
-
-.editorialContent {
-  max-width: 520px;
-}
-
-.editorialContent p {
   color: var(--ink-soft);
 
   font-size: 16px;
@@ -1383,46 +1100,21 @@ img {
   line-height: 1.9;
 }
 
-.textLink {
-  display: inline-block;
+.imageStoryVisual {
+  height: 500px;
 
-  margin-top: 12px;
+  overflow: hidden;
+}
 
-  padding-bottom: 6px;
+.imageStoryVisual img {
+  width: 100%;
+  height: 100%;
 
-  border-bottom: 1px solid var(--ink);
-
-  font-size: 11px;
-  font-weight: 700;
-
-  letter-spacing: 0.06em;
-
-  text-transform: uppercase;
+  object-fit: cover;
 }
 
 /* ============================================================
-   PACKS
-============================================================ */
-
-.packGrid {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 23px;
-}
-
-.largeProductCard .productVisual {
-  height: 430px;
-}
-
-.largeProductCard .bookMockup {
-  width: 185px;
-  height: 260px;
-}
-
-/* ============================================================
-   AVIS
+   REVIEWS
 ============================================================ */
 
 .reviewsSection {
@@ -1435,7 +1127,6 @@ img {
   margin-top: 22px;
 
   display: flex;
-
   justify-content: center;
   align-items: center;
 
@@ -1447,10 +1138,6 @@ img {
   color: var(--gold);
 
   letter-spacing: 0.08em;
-}
-
-.rating small {
-  color: var(--ink-soft);
 }
 
 .reviewsGrid {
@@ -1499,7 +1186,6 @@ img {
   border-top: 1px solid var(--border);
 
   display: flex;
-
   align-items: center;
 
   gap: 12px;
@@ -1512,7 +1198,6 @@ img {
   border-radius: 50%;
 
   display: grid;
-
   place-items: center;
 
   background: #f4e2dc;
@@ -1524,7 +1209,6 @@ img {
 
 .reviewAuthor div:last-child {
   display: flex;
-
   flex-direction: column;
 
   gap: 2px;
@@ -1588,7 +1272,6 @@ img {
   padding: 0 18px;
 
   border: 0;
-
   outline: none;
 
   background: white;
@@ -1662,7 +1345,6 @@ img {
 
 .footerColumn {
   display: flex;
-
   flex-direction: column;
 
   gap: 12px;
@@ -1705,7 +1387,7 @@ img {
 }
 
 /* ============================================================
-   MOBILE
+   MOBILE NAV
 ============================================================ */
 
 .mobileMenuButton {
@@ -1716,19 +1398,34 @@ img {
   display: none;
 }
 
+/* ============================================================
+   RESPONSIVE 1100
+============================================================ */
+
 @media (max-width: 1100px) {
   .desktopNav {
     gap: 20px;
   }
 
-  .productGrid {
-    grid-template-columns: repeat(3, 1fr);
+  .realHeroGrid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 35px;
   }
 
-  .ageGrid {
+  .realProductGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .featureGrid,
+  .featureGridReverse {
+    gap: 45px;
+  }
 }
+
+/* ============================================================
+   RESPONSIVE 900
+============================================================ */
 
 @media (max-width: 900px) {
   :root {
@@ -1764,13 +1461,6 @@ img {
   .brandLogoCentered {
     width: 190px;
     height: 118px;
-  }
-
-  .brandLogoImageCentered {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
   }
 
   .headerNavRow {
@@ -1844,36 +1534,32 @@ img {
     top: 125px;
   }
 
-  .heroGrid {
-    min-height: 0;
-
+  .realHeroGrid {
     grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    padding-top: 50px;
   }
 
-  .heroContent {
-    padding: 55px 0 20px;
+  .realHeroContent {
+    padding-left: 0;
 
     text-align: center;
   }
 
-  .heroDescription {
+  .realHeroContent > p {
     margin-left: auto;
     margin-right: auto;
   }
 
   .heroButtons,
-  .heroBenefits {
+  .realHeroMini {
     justify-content: center;
   }
 
-  .heroVisual {
-    height: 500px;
-
-    max-width: 570px;
-
-    width: 100%;
-
-    margin: 0 auto;
+  .realHeroImage {
+    height: 520px;
   }
 
   .benefitsGrid {
@@ -1886,22 +1572,33 @@ img {
     border-bottom: 1px solid var(--border);
   }
 
-  .productGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .editorialGrid {
+  .featureGrid,
+  .featureGridReverse {
     grid-template-columns: 1fr;
 
-    gap: 50px;
+    gap: 45px;
   }
 
-  .editorialContent {
+  .featureContent {
     max-width: none;
   }
 
-  .packGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .featureImages {
+    min-height: 620px;
+  }
+
+  .universeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .universeCard img {
+    height: 500px;
+  }
+
+  .imageStoryGrid {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
   }
 
   .reviewsGrid {
@@ -1922,6 +1619,10 @@ img {
     grid-column: 1 / -1;
   }
 }
+
+/* ============================================================
+   RESPONSIVE 600
+============================================================ */
 
 @media (max-width: 600px) {
   .container {
@@ -1945,56 +1646,16 @@ img {
     top: 115px;
   }
 
-  .hero h1 {
-    font-size: 44px;
+  .realHeroContent h1 {
+    font-size: 43px;
   }
 
-  .heroDescription {
+  .realHeroContent > p {
     font-size: 15px;
   }
 
-  .heroVisual {
+  .realHeroImage {
     height: 420px;
-  }
-
-  .heroBook {
-    width: 205px;
-    height: 290px;
-  }
-
-  .heroBookFront {
-    left: 25px;
-    bottom: 45px;
-  }
-
-  .heroBookBack {
-    right: 20px;
-    top: 50px;
-  }
-
-  .heroBook h3 {
-    font-size: 21px;
-  }
-
-  .heroCircleLarge {
-    width: 270px;
-    height: 270px;
-
-    right: -15px;
-  }
-
-  .heroCircleSmall {
-    width: 150px;
-    height: 150px;
-  }
-
-  .heroSticker {
-    width: 80px;
-    height: 80px;
-
-    right: 3px;
-
-    font-size: 12px;
   }
 
   .benefitsGrid {
@@ -2021,76 +1682,46 @@ img {
 
   .sectionHeader h2,
   .centerHeader h2,
-  .editorialContent h2,
+  .featureContent h2,
+  .imageStoryContent h2,
   .newsletter h2 {
     font-size: 36px;
   }
 
-  .productGrid {
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 28px 10px;
-  }
-
-  .productVisual {
-    height: 235px;
-  }
-
-  .bookMockup {
-    width: 112px;
-    height: 160px;
-
-    padding: 12px 9px;
-  }
-
-  .bookMockupSymbol {
-    width: 30px;
-    height: 30px;
-
-    margin: 22px 0 12px;
-  }
-
-  .bookMockup strong {
-    font-size: 11px;
-  }
-
-  .productInfo h3 {
-    min-height: 41px;
-
-    font-size: 14px;
-  }
-
-  .productCategory {
-    font-size: 8px;
-  }
-
-  .ageGrid {
+  .realProductGrid {
     grid-template-columns: 1fr;
   }
 
-  .ageCard {
-    min-height: 195px;
+  .realProductImageWrap {
+    height: 430px;
   }
 
-  .editorialSection {
+  .featureSection {
     padding: 65px 0;
   }
 
-  .editorialVisual {
-    min-height: 410px;
+  .featureImages {
+    min-height: 500px;
   }
 
-  .editorialBook {
-    width: 205px;
-    height: 300px;
+  .featureMainImage {
+    width: 82%;
+    height: 430px;
   }
 
-  .packGrid {
-    grid-template-columns: 1fr;
+  .featureSecondImage {
+    width: 56%;
+    height: 270px;
+
+    border-width: 6px;
   }
 
-  .largeProductCard .productVisual {
+  .universeCard img {
     height: 390px;
+  }
+
+  .imageStoryVisual {
+    height: 360px;
   }
 
   .newsletterForm {

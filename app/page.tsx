@@ -5,168 +5,65 @@ import { useState } from "react";
 type Product = {
   id: number;
   title: string;
-  category: string;
+  subtitle: string;
   age: string;
-  price: string;
-  oldPrice?: string;
+  image: string;
+  secondImage?: string;
   badge?: string;
-  background: string;
-  accent: string;
 };
 
 const products: Product[] = [
   {
     id: 1,
-    title: "La lune et le petit renard",
-    category: "Cahiers illustrés",
-    age: "Dès 3 ans",
-    price: "14,90 €",
-    badge: "NOUVEAU",
-    background: "#ead4ce",
-    accent: "#d77867",
+    title: "Mon Busy Book",
+    subtitle: "Un cahier ludique pour découvrir, manipuler et apprendre.",
+    age: "À partir de 18 mois",
+    image: "/products/busy-book-18-mois.png",
+    badge: "Dès 18 mois",
   },
   {
     id: 2,
-    title: "Mila au pays des nuages",
-    category: "Cahiers illustrés",
-    age: "Dès 4 ans",
-    price: "15,90 €",
-    badge: "NOUVEAU",
-    background: "#d6e4ef",
-    accent: "#7baac8",
+    title: "Mon premier imagier",
+    subtitle:
+      "Un imagier conçu pour enrichir le vocabulaire et reconnaître les objets du quotidien.",
+    age: "Dès 12 mois",
+    image: "/products/premier-imagier-12-mois.png",
+    secondImage: "/products/premier-imagier-interieur.png",
+    badge: "Dès 12 mois",
   },
   {
     id: 3,
-    title: "Le secret du jardin",
-    category: "Cahiers illustrés",
-    age: "Dès 2 ans",
-    price: "12,90 €",
-    badge: "COUP DE CŒUR",
-    background: "#d9e8d6",
-    accent: "#7da47d",
+    title: "Mon cahier d'activités Petite Section",
+    subtitle:
+      "Des activités adaptées aux premiers apprentissages de maternelle.",
+    age: "3 - 4 ans",
+    image: "/products/petite-section-3-4-ans.png",
+    secondImage: "/products/petite-section-interieur.jpg",
+    badge: "3 - 4 ans",
   },
   {
     id: 4,
-    title: "Les couleurs d'Anouk",
-    category: "Premiers apprentissages",
-    age: "Dès 2 ans",
-    price: "13,90 €",
-    background: "#f2dfd0",
-    accent: "#d58b69",
+    title: "Imagiers fruits & légumes",
+    subtitle:
+      "Découvrir les fruits et légumes avec des supports illustrés.",
+    age: "Dès 12 mois",
+    image: "/products/imagiers-fruits-legumes.png",
   },
   {
     id: 5,
-    title: "Mon premier imagier des animaux",
-    category: "Imagiers",
-    age: "12 / 36 mois",
-    price: "11,90 €",
-    background: "#f1e5be",
-    accent: "#cda950",
+    title: "Imagiers animaux & véhicules",
+    subtitle:
+      "Des univers familiers pour développer le vocabulaire des tout-petits.",
+    age: "Dès 12 mois",
+    image: "/products/imagiers-animaux-vehicules.png",
   },
   {
     id: 6,
-    title: "J'apprends les chiffres",
-    category: "Apprentissages",
-    age: "Dès 3 ans",
-    price: "12,90 €",
-    background: "#dbe9ed",
-    accent: "#70a5b2",
-  },
-  {
-    id: 7,
-    title: "J'apprends les formes",
-    category: "Apprentissages",
-    age: "Dès 3 ans",
-    price: "12,90 €",
-    background: "#e9def0",
-    accent: "#9c80b1",
-  },
-  {
-    id: 8,
-    title: "Mes premières émotions",
-    category: "Émotions",
-    age: "Dès 2 ans",
-    price: "14,90 €",
-    background: "#f1ddd6",
-    accent: "#ca8375",
-  },
-];
-
-const packs: Product[] = [
-  {
-    id: 101,
-    title: "Pack Premiers apprentissages",
-    category: "Packs",
-    age: "2 / 4 ans",
-    price: "29,90 €",
-    oldPrice: "38,70 €",
-    badge: "-20%",
-    background: "#e4ecd9",
-    accent: "#819b6d",
-  },
-  {
-    id: 102,
-    title: "Pack Histoires du soir",
-    category: "Packs",
-    age: "3 / 6 ans",
-    price: "34,90 €",
-    oldPrice: "44,70 €",
-    badge: "-22%",
-    background: "#e5ddee",
-    accent: "#977dab",
-  },
-  {
-    id: 103,
-    title: "Pack Découverte",
-    category: "Packs",
-    age: "12 mois / 3 ans",
-    price: "26,90 €",
-    oldPrice: "35,70 €",
-    badge: "-25%",
-    background: "#efe0d0",
-    accent: "#bd8065",
-  },
-];
-
-const ageCategories = [
-  {
-    title: "12 / 18 mois",
-    subtitle: "Éveil & découverte",
-    background: "#f2e8cc",
-    number: "01",
-  },
-  {
-    title: "18 mois / 3 ans",
-    subtitle: "Motricité & vocabulaire",
-    background: "#e3ecd9",
-    number: "02",
-  },
-  {
-    title: "3 / 6 ans",
-    subtitle: "Apprentissage & autonomie",
-    background: "#dfe8ef",
-    number: "03",
-  },
-  {
-    title: "6 / 8 ans",
-    subtitle: "Lecture & réflexion",
-    background: "#ebe1ec",
-    number: "04",
-  },
-];
-
-const reviews = [
-  {
-    name: "Sarah",
-    text: "Très belle découverte. Les cahiers sont magnifiques et ma fille les réclame régulièrement.",
-  },
-  {
-    name: "Nadia",
-    text: "Les activités sont adaptées, les illustrations sont douces et la qualité est vraiment au rendez-vous.",
-  },
-  {
-    name: "Amélie",
-    text: "Très jolie boutique et produits soigneusement préparés. Mon fils adore ses nouveaux cahiers.",
+    title: "Supports d'apprentissage",
+    subtitle:
+      "Couleurs, formes, alphabet et chiffres à découvrir en manipulant.",
+    age: "Premiers apprentissages",
+    image: "/products/supports-apprentissage.png",
   },
 ];
 
@@ -209,8 +106,6 @@ export default function Home() {
       ====================================================== */}
 
       <header className="siteHeader">
-        {/* Ligne logo */}
-
         <div className="headerLogoRow">
           <button
             className="mobileMenuButton"
@@ -250,8 +145,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Ligne menu */}
-
         <div className="headerNavRow">
           <nav className="desktopNav">
             <div className="navDropdown">
@@ -262,33 +155,31 @@ export default function Home() {
               <div className="dropdownMenu">
                 <div className="dropdownColumn">
                   <span className="dropdownTitle">Par âge</span>
-
-                  <a href="#ages">12 / 18 mois</a>
-                  <a href="#ages">18 mois / 3 ans</a>
-                  <a href="#ages">3 / 6 ans</a>
-                  <a href="#ages">6 / 8 ans</a>
+                  <a href="#products">12 / 18 mois</a>
+                  <a href="#products">18 mois / 3 ans</a>
+                  <a href="#products">3 / 6 ans</a>
+                  <a href="#products">6 / 8 ans</a>
                 </div>
 
                 <div className="dropdownColumn">
                   <span className="dropdownTitle">Collections</span>
-
-                  <a href="#products">Cahiers illustrés</a>
+                  <a href="#products">Busy Book</a>
                   <a href="#products">Imagiers</a>
-                  <a href="#products">Apprentissages</a>
-                  <a href="#products">Émotions</a>
+                  <a href="#products">Maternelle</a>
+                  <a href="#products">Supports éducatifs</a>
                 </div>
               </div>
             </div>
 
-            <a href="#new" className="navLink">
+            <a href="#products" className="navLink">
               Nouveautés
             </a>
 
-            <a href="#packs" className="navLink">
+            <a href="#products" className="navLink">
               Les packs
             </a>
 
-            <a href="#ages" className="navLink">
+            <a href="#products" className="navLink">
               Par âge
             </a>
 
@@ -306,8 +197,6 @@ export default function Home() {
           </nav>
         </div>
 
-        {/* Recherche */}
-
         {searchOpen && (
           <div className="searchPanel">
             <div className="searchContainer">
@@ -316,7 +205,7 @@ export default function Home() {
               <input
                 autoFocus
                 type="search"
-                placeholder="Rechercher un cahier, une activité..."
+                placeholder="Rechercher un cahier..."
               />
 
               <button onClick={() => setSearchOpen(false)}>Fermer</button>
@@ -324,14 +213,12 @@ export default function Home() {
           </div>
         )}
 
-        {/* Menu mobile */}
-
         {mobileMenu && (
           <div className="mobileNav">
             <a href="#products">Les cahiers</a>
-            <a href="#new">Nouveautés</a>
-            <a href="#packs">Les packs</a>
-            <a href="#ages">Par âge</a>
+            <a href="#products">Nouveautés</a>
+            <a href="#products">Les packs</a>
+            <a href="#products">Par âge</a>
             <a href="#favorites">Coups de cœur</a>
             <a href="#reviews">Avis</a>
             <a href="#contact">Contact</a>
@@ -343,23 +230,21 @@ export default function Home() {
           HERO
       ====================================================== */}
 
-      <section className="hero">
-        <div className="container heroGrid">
-          <div className="heroContent">
-            <span className="eyebrow">
-              Bienvenue chez Les Cahiers de Ariam
-            </span>
+      <section className="realHero">
+        <div className="container realHeroGrid">
+          <div className="realHeroContent">
+            <span className="eyebrow">Les Cahiers de Ariam</span>
 
             <h1>
-              Apprendre,
+              Apprendre en jouant,
               <br />
-              <em>jouer & grandir.</em>
+              <em>grandir en s'amusant.</em>
             </h1>
 
-            <p className="heroDescription">
-              Des cahiers illustrés et des activités éducatives conçus pour
-              accompagner les enfants de 12 mois à 8 ans dans leurs
-              découvertes, leur autonomie et leurs apprentissages.
+            <p>
+              Des cahiers éducatifs et ludiques pensés pour accompagner les
+              enfants dans leurs découvertes, leur autonomie et leurs premiers
+              apprentissages.
             </p>
 
             <div className="heroButtons">
@@ -367,54 +252,27 @@ export default function Home() {
                 Découvrir les cahiers
               </a>
 
-              <a href="#ages" className="button buttonLight">
-                Choisir par âge
+              <a href="#featured" className="button buttonLight">
+                Voir nos activités
               </a>
             </div>
 
-            <div className="heroBenefits">
-              <span>★ 4,9 / 5</span>
-              <span>Activités éducatives</span>
-              <span>Supports réutilisables</span>
-              <span>Livraison rapide</span>
+            <div className="realHeroMini">
+              <span>✓ Dès 12 mois</span>
+              <span>✓ Activités ludiques</span>
+              <span>✓ Supports réutilisables</span>
             </div>
           </div>
 
-          <div className="heroVisual">
-            <div className="heroCircle heroCircleLarge" />
-            <div className="heroCircle heroCircleSmall" />
+          <div className="realHeroImage">
+            <img
+              src="/products/busy-book-18-mois.png"
+              alt="Mon Busy Book à partir de 18 mois"
+            />
 
-            <div className="heroBook heroBookBack">
-              <span className="miniBrand">Les Cahiers de Ariam</span>
-
-              <div className="cloudShape" />
-
-              <h3>
-                Mila au pays
-                <br />
-                des nuages
-              </h3>
-
-              <span className="bookAge">Dès 4 ans</span>
-            </div>
-
-            <div className="heroBook heroBookFront">
-              <span className="miniBrand">Les Cahiers de Ariam</span>
-
-              <div className="moonShape" />
-
-              <h3>
-                La lune et
-                <br />
-                le petit renard
-              </h3>
-
-              <span className="bookAge">Dès 3 ans</span>
-            </div>
-
-            <div className="heroSticker">
-              <strong>Nouveau</strong>
-              <span>à découvrir</span>
+            <div className="realHeroBadge">
+              <strong>Mon Busy Book</strong>
+              <span>Dès 18 mois</span>
             </div>
           </div>
         </div>
@@ -428,104 +286,145 @@ export default function Home() {
         <div className="container benefitsGrid">
           <Benefit
             number="01"
-            title="Activités ludiques"
-            text="Apprendre en s'amusant"
+            title="Apprendre en jouant"
+            text="Des activités pensées pour les enfants"
           />
 
           <Benefit
             number="02"
-            title="Adaptés à chaque âge"
-            text="De 12 mois à 8 ans"
+            title="Adapté à chaque âge"
+            text="Des supports dès 12 mois"
           />
 
           <Benefit
             number="03"
-            title="Matériel de qualité"
-            text="Pensé pour être réutilisé"
+            title="Manipuler & découvrir"
+            text="Pour favoriser l'autonomie"
           />
 
           <Benefit
             number="04"
-            title="Livraison soignée"
-            text="France & Belgique"
+            title="Créé avec soin"
+            text="Une sélection pédagogique"
           />
         </div>
       </section>
 
       {/* ======================================================
-          NOUVEAUTÉS
-      ====================================================== */}
-
-      <section id="new" className="section">
-        <div className="container">
-          <SectionHeader
-            kicker="Vient de sortir"
-            title="Nos nouveautés"
-            link="Voir tous les cahiers"
-          />
-
-          <div className="productGrid">
-            {products.slice(0, 4).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ======================================================
-          PAR ÂGE
-      ====================================================== */}
-
-      <section id="ages" className="section softSection">
-        <div className="container">
-          <div className="centerHeader">
-            <span className="eyebrow">Choisir facilement</span>
-
-            <h2>Des activités pour chaque âge</h2>
-
-            <p>
-              Choisissez une tranche d'âge pour retrouver les cahiers et
-              activités adaptés au développement de votre enfant.
-            </p>
-          </div>
-
-          <div className="ageGrid">
-            {ageCategories.map((category) => (
-              <a
-                href="#products"
-                className="ageCard"
-                key={category.title}
-                style={{ backgroundColor: category.background }}
-              >
-                <span className="ageNumber">{category.number}</span>
-
-                <div>
-                  <h3>{category.title}</h3>
-                  <p>{category.subtitle}</p>
-                  <span className="ageLink">Découvrir →</span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ======================================================
-          COLLECTION
+          NOS CAHIERS
       ====================================================== */}
 
       <section id="products" className="section">
         <div className="container">
-          <SectionHeader
-            kicker="Notre collection"
-            title="Les cahiers"
-            link="Voir toute la boutique"
-          />
+          <div className="sectionHeader">
+            <div>
+              <span className="eyebrow">Notre collection</span>
+              <h2>Nos cahiers</h2>
+            </div>
 
-          <div className="productGrid">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            <a href="#products" className="sectionLink">
+              Voir toute la collection →
+            </a>
+          </div>
+
+          <div className="realProductGrid">
+            {products.slice(0, 6).map((product) => (
+              <RealProductCard key={product.id} product={product} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================
+          PETITE SECTION
+      ====================================================== */}
+
+      <section id="featured" className="featureSection">
+        <div className="container featureGrid">
+          <div className="featureImages">
+            <img
+              className="featureMainImage"
+              src="/products/petite-section-3-4-ans.png"
+              alt="Mon cahier d'activités Petite Section"
+            />
+
+            <img
+              className="featureSecondImage"
+              src="/products/petite-section-interieur.jpg"
+              alt="Aperçu des activités Petite Section"
+            />
+          </div>
+
+          <div className="featureContent">
+            <span className="eyebrow">Maternelle · 3 à 4 ans</span>
+
+            <h2>
+              Mon cahier d'activités
+              <br />
+              Petite Section
+            </h2>
+
+            <p>
+              Des activités variées pour travailler les émotions, les saisons,
+              les lettres, le graphisme, l'observation et les premiers
+              apprentissages.
+            </p>
+
+            <ul className="featureList">
+              <li>Activités adaptées aux 3–4 ans</li>
+              <li>Observation et association</li>
+              <li>Graphisme et motricité fine</li>
+              <li>Premiers apprentissages de maternelle</li>
+            </ul>
+
+            <a href="#products" className="button buttonDark">
+              Découvrir le cahier
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================
+          PREMIER IMAGIER
+      ====================================================== */}
+
+      <section className="featureSection alternateFeature">
+        <div className="container featureGrid featureGridReverse">
+          <div className="featureContent">
+            <span className="eyebrow">Dès 12 mois</span>
+
+            <h2>Mon premier imagier</h2>
+
+            <p>
+              Un support simple et visuel pour reconnaître les objets,
+              enrichir le vocabulaire et accompagner les premières
+              découvertes de l'enfant.
+            </p>
+
+            <ul className="featureList">
+              <li>Images faciles à reconnaître</li>
+              <li>Vocabulaire du quotidien</li>
+              <li>Support visuel adapté aux tout-petits</li>
+              <li>À découvrir avec un adulte</li>
+            </ul>
+
+            <a href="#products" className="button buttonDark">
+              Découvrir l'imagier
+            </a>
+          </div>
+
+          <div className="featureImages">
+            <img
+              className="featureMainImage"
+              src="/products/premier-imagier-12-mois.png"
+              alt="Mon premier imagier dès 12 mois"
+            />
+
+            <img
+              className="featureSecondImage"
+              src="/products/premier-imagier-interieur.png"
+              alt="Aperçu de l'intérieur de Mon premier imagier"
+            />
           </div>
         </div>
       </section>
@@ -534,89 +433,83 @@ export default function Home() {
           UNIVERS
       ====================================================== */}
 
-      <section className="editorialSection">
-        <div className="container editorialGrid">
-          <div className="editorialVisual">
-            <div className="editorialBook">
-              <span>Les Cahiers de Ariam</span>
+      <section id="favorites" className="section universeSection">
+        <div className="container">
+          <div className="centerHeader">
+            <span className="eyebrow">Explorer nos univers</span>
+            <h2>Des activités pour chaque découverte</h2>
 
-              <div className="leafDrawing">
-                <span />
-                <span />
-                <span />
-                <span />
+            <p>
+              Imagiers, activités, couleurs, formes, alphabet et vocabulaire :
+              chaque support accompagne une étape différente.
+            </p>
+          </div>
+
+          <div className="universeGrid">
+            <article className="universeCard">
+              <img
+                src="/products/imagiers-fruits-legumes.png"
+                alt="Imagiers fruits et légumes"
+              />
+
+              <div>
+                <span>Dès 12 mois</span>
+                <h3>Fruits & légumes</h3>
+                <p>Découvrir et nommer les aliments du quotidien.</p>
               </div>
+            </article>
 
-              <strong>
-                Le secret
-                <br />
-                du jardin
-              </strong>
+            <article className="universeCard">
+              <img
+                src="/products/imagiers-animaux-vehicules.png"
+                alt="Imagiers animaux et véhicules"
+              />
 
-              <small>Dès 2 ans</small>
-            </div>
-          </div>
+              <div>
+                <span>Dès 12 mois</span>
+                <h3>Animaux & véhicules</h3>
+                <p>Deux univers très appréciés des tout-petits.</p>
+              </div>
+            </article>
 
-          <div className="editorialContent">
-            <span className="eyebrow">Apprendre autrement</span>
+            <article className="universeCard">
+              <img
+                src="/products/supports-apprentissage.png"
+                alt="Supports d'apprentissage"
+              />
 
-            <h2>Des supports pensés pour les petits curieux</h2>
-
-            <p>
-              Nos cahiers associent découverte, manipulation et apprentissage
-              afin d'aider chaque enfant à progresser à son rythme.
-            </p>
-
-            <p>
-              Des univers doux et colorés pour travailler le vocabulaire, la
-              concentration, l'observation, la motricité et l'autonomie.
-            </p>
-
-            <a href="#products" className="textLink">
-              Découvrir notre univers →
-            </a>
+              <div>
+                <span>Apprentissage</span>
+                <h3>Couleurs, formes & alphabet</h3>
+                <p>Manipuler, tracer, observer et apprendre progressivement.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
       {/* ======================================================
-          PACKS
+          BANDEAU IMAGE
       ====================================================== */}
 
-      <section id="packs" className="section">
-        <div className="container">
-          <SectionHeader
-            kicker="Plus avantageux"
-            title="Nos packs"
-            link="Voir tous les packs"
-          />
+      <section className="imageStorySection">
+        <div className="container imageStoryGrid">
+          <div className="imageStoryContent">
+            <span className="eyebrow">Les Cahiers de Ariam</span>
 
-          <div className="packGrid">
-            {packs.map((pack) => (
-              <ProductCard key={pack.id} product={pack} large />
-            ))}
+            <h2>Des supports conçus pour éveiller la curiosité</h2>
+
+            <p>
+              Chaque activité est pensée pour rendre l'apprentissage plus
+              concret, plus visuel et plus amusant.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ======================================================
-          COUPS DE CŒUR
-      ====================================================== */}
-
-      <section id="favorites" className="section softSection">
-        <div className="container">
-          <SectionHeader
-            kicker="Les préférés"
-            title="Coups de cœur"
-            link="Tout découvrir"
-          />
-
-          <div className="productGrid">
-            {[products[2], products[0], products[5], products[7]].map(
-              (product) => (
-                <ProductCard key={product.id} product={product} />
-              )
-            )}
+          <div className="imageStoryVisual">
+            <img
+              src="/products/supports-apprentissage.png"
+              alt="Activités éducatives Les Cahiers de Ariam"
+            />
           </div>
         </div>
       </section>
@@ -635,29 +528,24 @@ export default function Home() {
             <div className="rating">
               <span>★★★★★</span>
               <strong>4,9 / 5</strong>
-              <small>plus de 400 avis</small>
             </div>
           </div>
 
           <div className="reviewsGrid">
-            {reviews.map((review) => (
-              <article className="reviewCard" key={review.name}>
-                <div className="reviewStars">★★★★★</div>
+            <ReviewCard
+              name="Sarah"
+              text="Ma fille adore manipuler les activités. Le format est vraiment adapté aux petits."
+            />
 
-                <p>“{review.text}”</p>
+            <ReviewCard
+              name="Nadia"
+              text="Très joli travail, les images sont claires et les activités très variées."
+            />
 
-                <div className="reviewAuthor">
-                  <div className="reviewAvatar">
-                    {review.name.charAt(0)}
-                  </div>
-
-                  <div>
-                    <strong>{review.name}</strong>
-                    <span>Acheteuse vérifiée</span>
-                  </div>
-                </div>
-              </article>
-            ))}
+            <ReviewCard
+              name="Amélie"
+              text="Un support ludique que nous utilisons régulièrement à la maison."
+            />
           </div>
         </div>
       </section>
@@ -684,7 +572,6 @@ export default function Home() {
             onSubmit={(event) => event.preventDefault()}
           >
             <input type="email" placeholder="Votre adresse e-mail" />
-
             <button type="submit">Je m'inscris</button>
           </form>
         </div>
@@ -705,7 +592,7 @@ export default function Home() {
               />
 
               <p>
-                Des cahiers tendres, éducatifs et colorés pour accompagner les
+                Des cahiers éducatifs, ludiques et colorés pour accompagner les
                 enfants dans leurs premières découvertes.
               </p>
             </div>
@@ -714,21 +601,16 @@ export default function Home() {
               title="Boutique"
               items={[
                 "Tous les cahiers",
-                "Nouveautés",
-                "Les packs",
+                "Busy Book",
+                "Imagiers",
+                "Maternelle",
                 "Par âge",
-                "Coups de cœur",
               ]}
             />
 
             <FooterColumn
               title="Les Cahiers de Ariam"
-              items={[
-                "Notre histoire",
-                "Nos engagements",
-                "Vos avis",
-                "Contact",
-              ]}
+              items={["Notre histoire", "Nos engagements", "Avis", "Contact"]}
             />
 
             <FooterColumn
@@ -754,9 +636,31 @@ export default function Home() {
   );
 }
 
-/* ============================================================
-   COMPONENTS
-============================================================ */
+function RealProductCard({ product }: { product: Product }) {
+  return (
+    <article className="realProductCard">
+      <div className="realProductImageWrap">
+        {product.badge && (
+          <span className="realProductBadge">{product.badge}</span>
+        )}
+
+        <img
+          src={product.image}
+          alt={product.title}
+          className="realProductImage"
+        />
+      </div>
+
+      <div className="realProductInfo">
+        <span>{product.age}</span>
+        <h3>{product.title}</h3>
+        <p>{product.subtitle}</p>
+
+        <a href="#products">Découvrir →</a>
+      </div>
+    </article>
+  );
+}
 
 function Benefit({
   number,
@@ -779,97 +683,25 @@ function Benefit({
   );
 }
 
-function SectionHeader({
-  kicker,
-  title,
-  link,
+function ReviewCard({
+  name,
+  text,
 }: {
-  kicker: string;
-  title: string;
-  link: string;
+  name: string;
+  text: string;
 }) {
   return (
-    <div className="sectionHeader">
-      <div>
-        <span className="eyebrow">{kicker}</span>
-        <h2>{title}</h2>
-      </div>
+    <article className="reviewCard">
+      <div className="reviewStars">★★★★★</div>
 
-      <a href="#" className="sectionLink">
-        {link} →
-      </a>
-    </div>
-  );
-}
+      <p>“{text}”</p>
 
-function ProductCard({
-  product,
-  large = false,
-}: {
-  product: Product;
-  large?: boolean;
-}) {
-  return (
-    <article className={`productCard ${large ? "largeProductCard" : ""}`}>
-      <div
-        className="productVisual"
-        style={{
-          backgroundColor: product.background,
-        }}
-      >
-        {product.badge && (
-          <span className="productBadge">{product.badge}</span>
-        )}
+      <div className="reviewAuthor">
+        <div className="reviewAvatar">{name.charAt(0)}</div>
 
-        <button
-          className="favoriteButton"
-          aria-label="Ajouter aux favoris"
-        >
-          ♡
-        </button>
-
-        <div
-          className="bookMockup"
-          style={{
-            borderColor: product.accent,
-          }}
-        >
-          <span className="bookMockupBrand">
-            Les Cahiers
-            <br />
-            de Ariam
-          </span>
-
-          <div
-            className="bookMockupSymbol"
-            style={{
-              backgroundColor: product.accent,
-            }}
-          />
-
-          <strong>{product.title}</strong>
-
-          <small>{product.age}</small>
-        </div>
-      </div>
-
-      <div className="productInfo">
-        <span className="productCategory">{product.category}</span>
-
-        <h3>{product.title}</h3>
-
-        <div className="productBottom">
-          <div className="prices">
-            {product.oldPrice && (
-              <span className="oldPrice">{product.oldPrice}</span>
-            )}
-
-            <strong>{product.price}</strong>
-          </div>
-
-          <button className="addButton" aria-label="Ajouter au panier">
-            +
-          </button>
+        <div>
+          <strong>{name}</strong>
+          <span>Acheteuse vérifiée</span>
         </div>
       </div>
     </article>
@@ -895,10 +727,6 @@ function FooterColumn({
     </div>
   );
 }
-
-/* ============================================================
-   ICONS
-============================================================ */
 
 function SearchIcon() {
   return (

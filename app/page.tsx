@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 type Product = {
   id: number;
@@ -10,16 +11,19 @@ type Product = {
   image: string;
   secondImage?: string;
   badge?: string;
+  href: string;
 };
 
 const products: Product[] = [
   {
     id: 1,
     title: "Mon Busy Book",
-    subtitle: "Un cahier ludique pour découvrir, manipuler et apprendre.",
+    subtitle:
+      "Un cahier ludique pour découvrir, manipuler et apprendre.",
     age: "À partir de 18 mois",
     image: "/products/busy-book-18-mois.png",
     badge: "Dès 18 mois",
+    href: "/produits/mon-busy-book",
   },
   {
     id: 2,
@@ -30,6 +34,7 @@ const products: Product[] = [
     image: "/products/premier-imagier-12-mois.png",
     secondImage: "/products/premier-imagier-interieur.png",
     badge: "Dès 12 mois",
+    href: "/produits/mon-premier-imagier",
   },
   {
     id: 3,
@@ -40,30 +45,22 @@ const products: Product[] = [
     image: "/products/petite-section-3-4-ans.png",
     secondImage: "/products/petite-section-interieur.jpg",
     badge: "3 - 4 ans",
+    href: "/produits/petite-section",
+  },
+];
+
+const reviews = [
+  {
+    name: "Sarah",
+    text: "Très joli cahier, mon fils adore manipuler les activités. Les supports sont visuels et faciles à comprendre.",
   },
   {
-    id: 4,
-    title: "Imagiers fruits & légumes",
-    subtitle:
-      "Découvrir les fruits et légumes avec des supports illustrés.",
-    age: "Dès 12 mois",
-    image: "/products/imagiers-fruits-legumes.png",
+    name: "Nadia",
+    text: "Une très belle découverte. Les activités sont variées et adaptées aux petits.",
   },
   {
-    id: 5,
-    title: "Imagiers animaux & véhicules",
-    subtitle:
-      "Des univers familiers pour développer le vocabulaire des tout-petits.",
-    age: "Dès 12 mois",
-    image: "/products/imagiers-animaux-vehicules.png",
-  },
-  {
-    id: 6,
-    title: "Supports d'apprentissage",
-    subtitle:
-      "Couleurs, formes, alphabet et chiffres à découvrir en manipulant.",
-    age: "Premiers apprentissages",
-    image: "/products/supports-apprentissage.png",
+    name: "Amélie",
+    text: "Les visuels sont magnifiques et mon enfant revient spontanément vers le cahier.",
   },
 ];
 
@@ -73,8 +70,8 @@ export default function Home() {
 
   return (
     <main>
-      {/* ======================================================
-          BARRE SUPÉRIEURE
+      {/* =====================================================
+          TOP BAR
       ====================================================== */}
 
       <div className="topBenefits">
@@ -101,7 +98,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ======================================================
+      {/* =====================================================
           HEADER
       ====================================================== */}
 
@@ -110,35 +107,41 @@ export default function Home() {
           <button
             className="mobileMenuButton"
             onClick={() => setMobileMenu(!mobileMenu)}
-            aria-label="Menu"
+            aria-label="Ouvrir le menu"
           >
             <span />
             <span />
             <span />
           </button>
 
-          <a href="#" className="brandLogoCentered">
+          <Link href="/" className="brandLogoCentered">
             <img
               src="/logo-ariam.png"
               alt="Les Cahiers de Ariam"
               className="brandLogoImageCentered"
             />
-          </a>
+          </Link>
 
           <div className="headerActions headerActionsTop">
             <button
-              className="iconButton"
+              className="iconButton desktopOnly"
               onClick={() => setSearchOpen(!searchOpen)}
               aria-label="Rechercher"
             >
               <SearchIcon />
             </button>
 
-            <button className="iconButton desktopOnly" aria-label="Compte">
+            <button
+              className="iconButton desktopOnly"
+              aria-label="Mon compte"
+            >
               <AccountIcon />
             </button>
 
-            <button className="iconButton cartButton" aria-label="Panier">
+            <button
+              className="iconButton cartButton"
+              aria-label="Panier"
+            >
               <CartIcon />
               <span className="cartCount">0</span>
             </button>
@@ -154,36 +157,49 @@ export default function Home() {
 
               <div className="dropdownMenu">
                 <div className="dropdownColumn">
-                  <span className="dropdownTitle">Par âge</span>
-                  <a href="#products">12 / 18 mois</a>
-                  <a href="#products">18 mois / 3 ans</a>
-                  <a href="#products">3 / 6 ans</a>
-                  <a href="#products">6 / 8 ans</a>
+                  <span className="dropdownTitle">
+                    Par âge
+                  </span>
+
+                  <a href="#collection">Dès 12 mois</a>
+                  <a href="#collection">Dès 18 mois</a>
+                  <a href="#collection">3 - 4 ans</a>
+                  <a href="#collection">Maternelle</a>
                 </div>
 
                 <div className="dropdownColumn">
-                  <span className="dropdownTitle">Collections</span>
-                  <a href="#products">Busy Book</a>
-                  <a href="#products">Imagiers</a>
-                  <a href="#products">Maternelle</a>
-                  <a href="#products">Supports éducatifs</a>
+                  <span className="dropdownTitle">
+                    Nos univers
+                  </span>
+
+                  <Link href="/produits/mon-busy-book">
+                    Busy Books
+                  </Link>
+
+                  <Link href="/produits/mon-premier-imagier">
+                    Imagiers
+                  </Link>
+
+                  <Link href="/produits/petite-section">
+                    Cahiers d'activités
+                  </Link>
                 </div>
               </div>
             </div>
 
-            <a href="#products" className="navLink">
+            <a href="#collection" className="navLink">
               Nouveautés
             </a>
 
-            <a href="#products" className="navLink">
+            <a href="#univers" className="navLink">
               Les packs
             </a>
 
-            <a href="#products" className="navLink">
+            <a href="#collection" className="navLink">
               Par âge
             </a>
 
-            <a href="#favorites" className="navLink">
+            <a href="#collection" className="navLink">
               Coups de cœur
             </a>
 
@@ -203,56 +219,68 @@ export default function Home() {
               <SearchIcon />
 
               <input
-                autoFocus
-                type="search"
+                type="text"
                 placeholder="Rechercher un cahier..."
+                autoFocus
               />
 
-              <button onClick={() => setSearchOpen(false)}>Fermer</button>
+              <button
+                onClick={() => setSearchOpen(false)}
+              >
+                Fermer
+              </button>
             </div>
           </div>
         )}
 
         {mobileMenu && (
-          <div className="mobileNav">
-            <a href="#products">Les cahiers</a>
-            <a href="#products">Nouveautés</a>
-            <a href="#products">Les packs</a>
-            <a href="#products">Par âge</a>
-            <a href="#favorites">Coups de cœur</a>
+          <nav className="mobileNav">
+            <a href="#collection">Les cahiers</a>
+            <a href="#collection">Nouveautés</a>
+            <a href="#univers">Les packs</a>
+            <a href="#collection">Par âge</a>
             <a href="#reviews">Avis</a>
             <a href="#contact">Contact</a>
-          </div>
+          </nav>
         )}
       </header>
 
-      {/* ======================================================
+      {/* =====================================================
           HERO
       ====================================================== */}
 
       <section className="realHero">
         <div className="container realHeroGrid">
           <div className="realHeroContent">
-            <span className="eyebrow">Les Cahiers de Ariam</span>
+            <span className="eyebrow">
+              Les Cahiers de Ariam
+            </span>
 
             <h1>
               Apprendre en jouant,
               <br />
-              <em>grandir en s'amusant.</em>
+              <em>grandir en s’amusant.</em>
             </h1>
 
             <p>
-              Des cahiers éducatifs et ludiques pensés pour accompagner les
-              enfants dans leurs découvertes, leur autonomie et leurs premiers
-              apprentissages.
+              Des cahiers éducatifs et ludiques pensés
+              pour accompagner les enfants dans leurs
+              découvertes, leur autonomie et leurs
+              premiers apprentissages.
             </p>
 
             <div className="heroButtons">
-              <a href="#products" className="button buttonDark">
+              <a
+                href="#collection"
+                className="button buttonDark"
+              >
                 Découvrir les cahiers
               </a>
 
-              <a href="#featured" className="button buttonLight">
+              <a
+                href="#univers"
+                className="button buttonLight"
+              >
                 Voir nos activités
               </a>
             </div>
@@ -264,22 +292,25 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="realHeroImage">
+          <Link
+            href="/produits/mon-busy-book"
+            className="realHeroImage"
+          >
             <img
               src="/products/busy-book-18-mois.png"
-              alt="Mon Busy Book à partir de 18 mois"
+              alt="Mon Busy Book dès 18 mois"
             />
 
             <div className="realHeroBadge">
               <strong>Mon Busy Book</strong>
               <span>Dès 18 mois</span>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
 
-      {/* ======================================================
-          AVANTAGES
+      {/* =====================================================
+          BENEFITS
       ====================================================== */}
 
       <section className="benefitsBar">
@@ -299,7 +330,7 @@ export default function Home() {
           <Benefit
             number="03"
             title="Manipuler & découvrir"
-            text="Pour favoriser l'autonomie"
+            text="Pour favoriser l’autonomie"
           />
 
           <Benefit
@@ -310,138 +341,194 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ======================================================
-          NOS CAHIERS
+      {/* =====================================================
+          PRODUCTS
       ====================================================== */}
 
-      <section id="products" className="section">
+      <section
+        className="section"
+        id="collection"
+      >
         <div className="container">
           <div className="sectionHeader">
             <div>
-              <span className="eyebrow">Notre collection</span>
+              <span className="eyebrow">
+                Notre collection
+              </span>
+
               <h2>Nos cahiers</h2>
             </div>
 
-            <a href="#products" className="sectionLink">
+            <a
+              href="#collection"
+              className="sectionLink"
+            >
               Voir toute la collection →
             </a>
           </div>
 
           <div className="realProductGrid">
-            {products.slice(0, 6).map((product) => (
-              <RealProductCard key={product.id} product={product} />
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ======================================================
-          PETITE SECTION
+      {/* =====================================================
+          PETITE SECTION FEATURE
       ====================================================== */}
 
-      <section id="featured" className="featureSection">
+      <section className="featureSection">
         <div className="container featureGrid">
           <div className="featureImages">
-            <img
-              className="featureMainImage"
-              src="/products/petite-section-3-4-ans.png"
-              alt="Mon cahier d'activités Petite Section"
-            />
+            <Link href="/produits/petite-section">
+              <img
+                src="/products/petite-section-3-4-ans.png"
+                alt="Cahier d'activités Petite Section 3 à 4 ans"
+                className="featureMainImage"
+              />
+            </Link>
 
-            <img
-              className="featureSecondImage"
-              src="/products/petite-section-interieur.jpg"
-              alt="Aperçu des activités Petite Section"
-            />
+            <Link href="/produits/petite-section">
+              <img
+                src="/products/petite-section-interieur.jpg"
+                alt="Aperçu des activités Petite Section"
+                className="featureSecondImage"
+              />
+            </Link>
           </div>
 
           <div className="featureContent">
-            <span className="eyebrow">Maternelle · 3 à 4 ans</span>
+            <span className="eyebrow">
+              Maternelle · 3 à 4 ans
+            </span>
 
             <h2>
-              Mon cahier d'activités
+              Mon cahier d’activités
               <br />
               Petite Section
             </h2>
 
             <p>
-              Des activités variées pour travailler les émotions, les saisons,
-              les lettres, le graphisme, l'observation et les premiers
+              Des activités variées pour travailler les
+              émotions, les saisons, les lettres, le
+              graphisme, l’observation et les premiers
               apprentissages.
             </p>
 
             <ul className="featureList">
-              <li>Activités adaptées aux 3–4 ans</li>
-              <li>Observation et association</li>
-              <li>Graphisme et motricité fine</li>
-              <li>Premiers apprentissages de maternelle</li>
+              <li>
+                Activités adaptées aux 3–4 ans
+              </li>
+              <li>
+                Observation et association
+              </li>
+              <li>
+                Graphisme et motricité fine
+              </li>
+              <li>
+                Premiers apprentissages de maternelle
+              </li>
             </ul>
 
-            <a href="#products" className="button buttonDark">
+            <Link
+              href="/produits/petite-section"
+              className="button buttonDark"
+            >
               Découvrir le cahier
-            </a>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ======================================================
-          PREMIER IMAGIER
+      {/* =====================================================
+          PREMIER IMAGIER FEATURE
       ====================================================== */}
 
       <section className="featureSection alternateFeature">
         <div className="container featureGrid featureGridReverse">
           <div className="featureContent">
-            <span className="eyebrow">Dès 12 mois</span>
+            <span className="eyebrow">
+              Dès 12 mois
+            </span>
 
-            <h2>Mon premier imagier</h2>
+            <h2>
+              Mon premier imagier
+            </h2>
 
             <p>
-              Un support simple et visuel pour reconnaître les objets,
-              enrichir le vocabulaire et accompagner les premières
-              découvertes de l'enfant.
+              Un support simple et visuel pour reconnaître
+              les objets, enrichir le vocabulaire et
+              accompagner les premières découvertes de
+              l’enfant.
             </p>
 
             <ul className="featureList">
-              <li>Images faciles à reconnaître</li>
-              <li>Vocabulaire du quotidien</li>
-              <li>Support visuel adapté aux tout-petits</li>
-              <li>À découvrir avec un adulte</li>
+              <li>
+                Images faciles à reconnaître
+              </li>
+              <li>
+                Vocabulaire du quotidien
+              </li>
+              <li>
+                Support visuel adapté aux tout-petits
+              </li>
+              <li>
+                À découvrir avec un adulte
+              </li>
             </ul>
 
-            <a href="#products" className="button buttonDark">
-              Découvrir l'imagier
-            </a>
+            <Link
+              href="/produits/mon-premier-imagier"
+              className="button buttonDark"
+            >
+              Découvrir l’imagier
+            </Link>
           </div>
 
           <div className="featureImages">
-            <img
-              className="featureMainImage"
-              src="/products/premier-imagier-12-mois.png"
-              alt="Mon premier imagier dès 12 mois"
-            />
+            <Link href="/produits/mon-premier-imagier">
+              <img
+                src="/products/premier-imagier-12-mois.png"
+                alt="Mon premier imagier dès 12 mois"
+                className="featureMainImage"
+              />
+            </Link>
 
-            <img
-              className="featureSecondImage"
-              src="/products/premier-imagier-interieur.png"
-              alt="Aperçu de l'intérieur de Mon premier imagier"
-            />
+            <Link href="/produits/mon-premier-imagier">
+              <img
+                src="/products/premier-imagier-interieur.png"
+                alt="Aperçu intérieur de Mon premier imagier"
+                className="featureSecondImage"
+              />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ======================================================
-          UNIVERS
+      {/* =====================================================
+          OTHER UNIVERSES
       ====================================================== */}
 
-      <section id="favorites" className="section universeSection">
+      <section
+        className="section universeSection"
+        id="univers"
+      >
         <div className="container">
           <div className="centerHeader">
-            <span className="eyebrow">Explorer nos univers</span>
-            <h2>Des activités pour chaque découverte</h2>
+            <span className="eyebrow">
+              Découvrir autrement
+            </span>
+
+            <h2>Nos univers éducatifs</h2>
 
             <p>
-              Imagiers, activités, couleurs, formes, alphabet et vocabulaire :
-              chaque support accompagne une étape différente.
+              Des supports pensés pour accompagner chaque
+              étape des apprentissages de l’enfant.
             </p>
           </div>
 
@@ -455,7 +542,10 @@ export default function Home() {
               <div>
                 <span>Dès 12 mois</span>
                 <h3>Fruits & légumes</h3>
-                <p>Découvrir et nommer les aliments du quotidien.</p>
+                <p>
+                  Découvrir les aliments et enrichir le
+                  vocabulaire du quotidien.
+                </p>
               </div>
             </article>
 
@@ -468,7 +558,10 @@ export default function Home() {
               <div>
                 <span>Dès 12 mois</span>
                 <h3>Animaux & véhicules</h3>
-                <p>Deux univers très appréciés des tout-petits.</p>
+                <p>
+                  Reconnaître et nommer les animaux,
+                  transports et objets familiers.
+                </p>
               </div>
             </article>
 
@@ -479,51 +572,77 @@ export default function Home() {
               />
 
               <div>
-                <span>Apprentissage</span>
-                <h3>Couleurs, formes & alphabet</h3>
-                <p>Manipuler, tracer, observer et apprendre progressivement.</p>
+                <span>Apprentissages</span>
+                <h3>Couleurs, formes & lettres</h3>
+                <p>
+                  Des supports visuels pour apprendre,
+                  tracer, reconnaître et manipuler.
+                </p>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      {/* ======================================================
-          BANDEAU IMAGE
+      {/* =====================================================
+          BUSY BOOK STORY
       ====================================================== */}
 
       <section className="imageStorySection">
         <div className="container imageStoryGrid">
           <div className="imageStoryContent">
-            <span className="eyebrow">Les Cahiers de Ariam</span>
+            <span className="eyebrow">
+              Dès 18 mois
+            </span>
 
-            <h2>Des supports conçus pour éveiller la curiosité</h2>
+            <h2>
+              Manipuler, observer,
+              <br />
+              apprendre.
+            </h2>
 
             <p>
-              Chaque activité est pensée pour rendre l'apprentissage plus
-              concret, plus visuel et plus amusant.
+              Mon Busy Book accompagne l’enfant dans ses
+              premières découvertes grâce à des activités
+              visuelles et ludiques adaptées aux
+              tout-petits.
             </p>
+
+            <Link
+              href="/produits/mon-busy-book"
+              className="button buttonDark"
+            >
+              Voir Mon Busy Book
+            </Link>
           </div>
 
-          <div className="imageStoryVisual">
+          <Link
+            href="/produits/mon-busy-book"
+            className="imageStoryVisual"
+          >
             <img
-              src="/products/supports-apprentissage.png"
-              alt="Activités éducatives Les Cahiers de Ariam"
+              src="/products/busy-book-18-mois.png"
+              alt="Mon Busy Book dès 18 mois"
             />
-          </div>
+          </Link>
         </div>
       </section>
 
-      {/* ======================================================
-          AVIS
+      {/* =====================================================
+          REVIEWS
       ====================================================== */}
 
-      <section id="reviews" className="reviewsSection">
+      <section
+        className="reviewsSection"
+        id="reviews"
+      >
         <div className="container">
           <div className="centerHeader">
-            <span className="eyebrow">Ils nous font confiance</span>
+            <span className="eyebrow">
+              Les parents en parlent
+            </span>
 
-            <h2>Vos avis</h2>
+            <h2>Vos petits mots</h2>
 
             <div className="rating">
               <span>★★★★★</span>
@@ -532,56 +651,82 @@ export default function Home() {
           </div>
 
           <div className="reviewsGrid">
-            <ReviewCard
-              name="Sarah"
-              text="Ma fille adore manipuler les activités. Le format est vraiment adapté aux petits."
-            />
+            {reviews.map((review) => (
+              <article
+                className="reviewCard"
+                key={review.name}
+              >
+                <div className="reviewStars">
+                  ★★★★★
+                </div>
 
-            <ReviewCard
-              name="Nadia"
-              text="Très joli travail, les images sont claires et les activités très variées."
-            />
+                <p>“{review.text}”</p>
 
-            <ReviewCard
-              name="Amélie"
-              text="Un support ludique que nous utilisons régulièrement à la maison."
-            />
+                <div className="reviewAuthor">
+                  <div className="reviewAvatar">
+                    {review.name.charAt(0)}
+                  </div>
+
+                  <div>
+                    <strong>{review.name}</strong>
+                    <span>Parent vérifié</span>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ======================================================
+      {/* =====================================================
           NEWSLETTER
       ====================================================== */}
 
       <section className="newsletterSection">
         <div className="container newsletter">
           <div>
-            <span className="eyebrow">Le courrier d'Ariam</span>
+            <span className="eyebrow">
+              Restons en contact
+            </span>
 
-            <h2>Recevez nos nouveautés</h2>
+            <h2>
+              Rejoignez l’univers
+              <br />
+              des Cahiers de Ariam
+            </h2>
 
             <p>
-              Nouveaux cahiers, idées d'activités et offres directement dans
-              votre boîte mail.
+              Nouveautés, idées d’activités et conseils
+              pour accompagner les apprentissages de vos
+              enfants.
             </p>
           </div>
 
           <form
             className="newsletterForm"
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={(e) => e.preventDefault()}
           >
-            <input type="email" placeholder="Votre adresse e-mail" />
-            <button type="submit">Je m'inscris</button>
+            <input
+              type="email"
+              placeholder="Votre adresse e-mail"
+              aria-label="Votre adresse e-mail"
+            />
+
+            <button type="submit">
+              S’inscrire
+            </button>
           </form>
         </div>
       </section>
 
-      {/* ======================================================
+      {/* =====================================================
           FOOTER
       ====================================================== */}
 
-      <footer id="contact" className="footer">
+      <footer
+        className="footer"
+        id="contact"
+      >
         <div className="container">
           <div className="footerGrid">
             <div className="footerBrand">
@@ -592,43 +737,75 @@ export default function Home() {
               />
 
               <p>
-                Des cahiers éducatifs, ludiques et colorés pour accompagner les
-                enfants dans leurs premières découvertes.
+                Des cahiers éducatifs et ludiques pour
+                accompagner les enfants dans leurs
+                premières découvertes.
               </p>
             </div>
 
             <FooterColumn
-              title="Boutique"
-              items={[
-                "Tous les cahiers",
-                "Busy Book",
-                "Imagiers",
-                "Maternelle",
-                "Par âge",
+              title="Les cahiers"
+              links={[
+                {
+                  label: "Mon Busy Book",
+                  href: "/produits/mon-busy-book",
+                },
+                {
+                  label: "Mon premier imagier",
+                  href: "/produits/mon-premier-imagier",
+                },
+                {
+                  label: "Petite Section",
+                  href: "/produits/petite-section",
+                },
               ]}
             />
 
             <FooterColumn
-              title="Les Cahiers de Ariam"
-              items={["Notre histoire", "Nos engagements", "Avis", "Contact"]}
+              title="Informations"
+              links={[
+                {
+                  label: "Livraison",
+                  href: "#",
+                },
+                {
+                  label: "Paiement",
+                  href: "#",
+                },
+                {
+                  label: "Retours",
+                  href: "#",
+                },
+              ]}
             />
 
             <FooterColumn
-              title="Aide & informations"
-              items={[
-                "Livraison",
-                "Retours",
-                "Questions fréquentes",
-                "CGV",
-                "Mentions légales",
-                "Confidentialité",
+              title="Nous contacter"
+              links={[
+                {
+                  label: "Contact",
+                  href: "#contact",
+                },
+                {
+                  label: "Instagram",
+                  href: "#",
+                },
+                {
+                  label: "FAQ",
+                  href: "#",
+                },
               ]}
             />
           </div>
 
           <div className="footerBottom">
-            <span>© 2026 Les Cahiers de Ariam</span>
-            <span>Fait avec ♡ en France</span>
+            <span>
+              © 2026 Les Cahiers de Ariam
+            </span>
+
+            <span>
+              Tous droits réservés
+            </span>
           </div>
         </div>
       </footer>
@@ -636,31 +813,9 @@ export default function Home() {
   );
 }
 
-function RealProductCard({ product }: { product: Product }) {
-  return (
-    <article className="realProductCard">
-      <div className="realProductImageWrap">
-        {product.badge && (
-          <span className="realProductBadge">{product.badge}</span>
-        )}
-
-        <img
-          src={product.image}
-          alt={product.title}
-          className="realProductImage"
-        />
-      </div>
-
-      <div className="realProductInfo">
-        <span>{product.age}</span>
-        <h3>{product.title}</h3>
-        <p>{product.subtitle}</p>
-
-        <a href="#products">Découvrir →</a>
-      </div>
-    </article>
-  );
-}
+/* ============================================================
+   COMPONENTS
+============================================================ */
 
 function Benefit({
   number,
@@ -673,7 +828,9 @@ function Benefit({
 }) {
   return (
     <div className="benefit">
-      <span className="benefitIcon">{number}</span>
+      <div className="benefitIcon">
+        {number}
+      </div>
 
       <div>
         <strong>{title}</strong>
@@ -683,26 +840,44 @@ function Benefit({
   );
 }
 
-function ReviewCard({
-  name,
-  text,
+function ProductCard({
+  product,
 }: {
-  name: string;
-  text: string;
+  product: Product;
 }) {
   return (
-    <article className="reviewCard">
-      <div className="reviewStars">★★★★★</div>
+    <article className="realProductCard">
+      <Link
+        href={product.href}
+        className="realProductImageWrap"
+      >
+        <img
+          src={product.image}
+          alt={product.title}
+          className="realProductImage"
+        />
 
-      <p>“{text}”</p>
+        {product.badge && (
+          <span className="realProductBadge">
+            {product.badge}
+          </span>
+        )}
+      </Link>
 
-      <div className="reviewAuthor">
-        <div className="reviewAvatar">{name.charAt(0)}</div>
+      <div className="realProductInfo">
+        <span>{product.age}</span>
 
-        <div>
-          <strong>{name}</strong>
-          <span>Acheteuse vérifiée</span>
-        </div>
+        <h3>
+          <Link href={product.href}>
+            {product.title}
+          </Link>
+        </h3>
+
+        <p>{product.subtitle}</p>
+
+        <Link href={product.href}>
+          Découvrir →
+        </Link>
       </div>
     </article>
   );
@@ -710,36 +885,62 @@ function ReviewCard({
 
 function FooterColumn({
   title,
-  items,
+  links,
 }: {
   title: string;
-  items: string[];
+  links: {
+    label: string;
+    href: string;
+  }[];
 }) {
   return (
     <div className="footerColumn">
       <h4>{title}</h4>
 
-      {items.map((item) => (
-        <a href="#" key={item}>
-          {item}
-        </a>
-      ))}
+      {links.map((link) =>
+        link.href.startsWith("/") ? (
+          <Link
+            key={link.label}
+            href={link.href}
+          >
+            {link.label}
+          </Link>
+        ) : (
+          <a
+            key={link.label}
+            href={link.href}
+          >
+            {link.label}
+          </a>
+        )
+      )}
     </div>
   );
 }
 
+/* ============================================================
+   ICONS
+============================================================ */
+
 function SearchIcon() {
   return (
     <svg
-      viewBox="0 0 24 24"
       width="21"
       height="21"
+      viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
     >
-      <circle cx="11" cy="11" r="7" />
-      <path d="m20 20-4-4" />
+      <circle
+        cx="11"
+        cy="11"
+        r="7"
+      />
+      <path d="m20 20-3.5-3.5" />
     </svg>
   );
 }
@@ -747,15 +948,22 @@ function SearchIcon() {
 function AccountIcon() {
   return (
     <svg
-      viewBox="0 0 24 24"
       width="21"
       height="21"
+      viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
     >
-      <circle cx="12" cy="8" r="4" />
-      <path d="M4.5 21c.8-4.5 3.2-6.5 7.5-6.5s6.7 2 7.5 6.5" />
+      <circle
+        cx="12"
+        cy="8"
+        r="4"
+      />
+      <path d="M5 21c0-4 3-7 7-7s7 3 7 7" />
     </svg>
   );
 }
@@ -763,16 +971,29 @@ function AccountIcon() {
 function CartIcon() {
   return (
     <svg
-      viewBox="0 0 24 24"
       width="22"
       height="22"
+      viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
     >
-      <path d="M3 4h2l2.2 10.3a2 2 0 0 0 2 1.7h7.9a2 2 0 0 0 2-1.7L21 7H6" />
-      <circle cx="9" cy="20" r="1" />
-      <circle cx="18" cy="20" r="1" />
+      <path d="M3 4h2l2 11h10l2-8H6" />
+
+      <circle
+        cx="9"
+        cy="20"
+        r="1"
+      />
+
+      <circle
+        cx="17"
+        cy="20"
+        r="1"
+      />
     </svg>
   );
 }

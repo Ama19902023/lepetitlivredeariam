@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type ProductImage = {
   src: string;
@@ -16,6 +16,29 @@ export default function ProductGallery({
 }: ProductGalleryProps) {
   const [selected, setSelected] = useState(images[0]);
   const [isOpen, setIsOpen] = useState(false);
+
+  function openImage(image: ProductImage) {
+    setSelected(image);
+    setIsOpen(true);
+  }
+
+  function closeImage() {
+    setIsOpen(false);
+  }
+
+  useEffect(() => {
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
 
   return (
     <>
@@ -40,7 +63,8 @@ export default function ProductGallery({
             <button
               key={image.src}
               type="button"
-              onClick={() => setSelected(image)}
+              onClick={() => openImage(image)}
+              aria-label={`Agrandir ${image.alt}`}
               style={{
                 width: "88px",
                 height: "88px",
@@ -50,9 +74,8 @@ export default function ProductGallery({
                     ? "2px solid #403228"
                     : "1px solid #ded6d0",
                 background: "#fff",
-                cursor: "pointer",
+                cursor: "zoom-in",
               }}
-              aria-label={`Afficher ${image.alt}`}
             >
               <img
                 src={image.src}
@@ -72,15 +95,17 @@ export default function ProductGallery({
         <div style={{ flex: 1 }}>
           <button
             type="button"
-            onClick={() => setIsOpen(true)}
+            onClick={() => openImage(selected)}
+            aria-label={`Agrandir ${selected.alt}`}
             style={{
+              width: "100%",
               border: "none",
               padding: 0,
+              margin: 0,
               background: "transparent",
               cursor: "zoom-in",
-              width: "100%",
+              display: "block",
             }}
-            aria-label="Agrandir l'image"
           >
             <img
               src={selected.src}
@@ -89,60 +114,69 @@ export default function ProductGallery({
                 width: "100%",
                 display: "block",
                 objectFit: "contain",
+                cursor: "zoom-in",
               }}
             />
           </button>
         </div>
       </div>
 
-      {/* IMAGE AGRANDIE */}
+      {/* MODALE PLEIN ÉCRAN */}
       {isOpen && (
         <div
-          onClick={() => setIsOpen(false)}
+          onClick={closeImage}
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0, 0, 0, 0.88)",
-            zIndex: 9999,
+            zIndex: 99999,
+            background: "rgba(0,0,0,0.9)",
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
+            alignItems: "center",
             padding: "30px",
           }}
         >
           {/* CROIX */}
           <button
             type="button"
-            onClick={() => setIsOpen(false)}
-            aria-label="Fermer"
+            onClick={(event) => {
+              event.stopPropagation();
+              closeImage();
+            }}
+            aria-label="Fermer l'image"
             style={{
-              position: "absolute",
+              position: "fixed",
               top: "20px",
-              right: "25px",
-              width: "48px",
-              height: "48px",
+              right: "20px",
+              zIndex: 100000,
+              width: "50px",
+              height: "50px",
               borderRadius: "50%",
               border: "none",
-              background: "rgba(255,255,255,0.95)",
+              background: "#ffffff",
               color: "#403228",
-              fontSize: "28px",
+              fontSize: "32px",
               cursor: "pointer",
-              lineHeight: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             ×
           </button>
 
-          {/* IMAGE PLEIN ÉCRAN */}
+          {/* IMAGE AGRANDIE */}
           <img
             src={selected.src}
             alt={selected.alt}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
             style={{
               maxWidth: "95vw",
               maxHeight: "92vh",
+              width: "auto",
+              height: "auto",
               objectFit: "contain",
-              cursor: "zoom-out",
+              display: "block",
             }}
           />
         </div>

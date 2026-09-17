@@ -7,17 +7,19 @@ import {
 } from "@/lib/shopify";
 
 export const metadata: Metadata = {
-  title: "Mon premier imagier dès 12 mois",
+  title: "Pack affiches d’apprentissage",
   description:
-    "Découvrez Mon premier imagier des Cahiers de Ariam, un support éducatif dès 12 mois pour développer le vocabulaire et reconnaître les objets du quotidien.",
+    "Découvrez le Pack affiches d’apprentissage des Cahiers de Ariam pour accompagner les premiers apprentissages des enfants.",
   alternates: {
-    canonical: "/produits/mon-premier-imagier",
+    canonical: "/produits/pack-affiches-dapprentissage",
   },
 };
 
-export default async function PremierImagierPage() {
+export default async function PackAffichesPage() {
   const shopifyProduct =
-    await getShopifyProductByHandle("mon-premier-imagier");
+    await getShopifyProductByHandle(
+      "pack-affiches-dapprentissage"
+    );
 
   const price = formatPrice(
     shopifyProduct?.price ?? null
@@ -76,8 +78,8 @@ export default async function PremierImagierPage() {
         >
           <div>
             <img
-              src="/products/premier-imagier-12-mois.png"
-              alt="Mon premier imagier dès 12 mois"
+              src="/products/supports-apprentissage.png"
+              alt="Pack affiches d’apprentissage"
               style={{
                 width: "100%",
                 display: "block",
@@ -98,7 +100,7 @@ export default async function PremierImagierPage() {
                 textTransform: "uppercase",
               }}
             >
-              Dès 12 mois
+              Apprendre au quotidien
             </span>
 
             <h1
@@ -111,7 +113,7 @@ export default async function PremierImagierPage() {
                 color: "#403228",
               }}
             >
-              Mon premier imagier
+              Pack affiches d’apprentissage
             </h1>
 
             <p
@@ -122,9 +124,9 @@ export default async function PremierImagierPage() {
                 lineHeight: 1.8,
               }}
             >
-              Un imagier pensé pour accompagner les premières
-              découvertes, enrichir le vocabulaire et apprendre
-              à reconnaître les objets du quotidien.
+              Un ensemble de supports visuels pour accompagner
+              les premiers apprentissages de manière simple,
+              ludique et progressive.
             </p>
 
             <div
@@ -136,10 +138,10 @@ export default async function PremierImagierPage() {
                 fontSize: "15px",
               }}
             >
-              <div>✓ Développe le vocabulaire</div>
-              <div>✓ Favorise la reconnaissance visuelle</div>
-              <div>✓ Encourage l’échange avec l’adulte</div>
-              <div>✓ Adapté aux tout-petits</div>
+              <div>✓ Couleurs</div>
+              <div>✓ Formes</div>
+              <div>✓ Alphabet</div>
+              <div>✓ Chiffres et premières notions</div>
             </div>
 
             <div style={{ marginTop: "30px" }}>
@@ -176,82 +178,27 @@ export default async function PremierImagierPage() {
               variantId={
                 shopifyProduct?.variantId ?? null
               }
-              handle="mon-premier-imagier"
-              title="Mon premier imagier"
+              handle="pack-affiches-dapprentissage"
+              title="Pack affiches d’apprentissage"
               price={numericPrice}
-              image="/products/premier-imagier-12-mois.png"
+              image="/products/supports-apprentissage.png"
               stock={stock}
             />
-          </div>
-        </div>
-      </section>
 
-      <section
-        style={{
-          padding: "80px 0",
-          borderTop: "1px solid #eee7df",
-          background: "#fff",
-        }}
-      >
-        <div
-          style={{
-            width: "min(1100px, calc(100% - 40px))",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "60px",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <span
+            <div
               style={{
-                display: "block",
-                marginBottom: "12px",
-                color: "#bd7c67",
-                fontSize: "11px",
-                fontWeight: 700,
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-              }}
-            >
-              Découvrir et apprendre
-            </span>
-
-            <h2
-              style={{
-                margin: 0,
-                fontFamily: "Georgia, serif",
-                fontSize: "clamp(36px, 4vw, 52px)",
-                fontWeight: 400,
-                color: "#403228",
-              }}
-            >
-              Les premières images du quotidien
-            </h2>
-
-            <p
-              style={{
-                marginTop: "22px",
+                marginTop: "18px",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "16px",
                 color: "#756359",
-                fontSize: "17px",
-                lineHeight: 1.9,
+                fontSize: "13px",
               }}
             >
-              L’imagier permet à l’enfant d’observer, reconnaître
-              et nommer progressivement les éléments qui
-              l’entourent.
-            </p>
+              <span>✓ Paiement sécurisé</span>
+              <span>✓ Livraison offerte dès 49 €</span>
+            </div>
           </div>
-
-          <img
-            src="/products/premier-imagier-interieur.png"
-            alt="Intérieur de Mon premier imagier"
-            style={{
-              width: "100%",
-              display: "block",
-            }}
-          />
         </div>
       </section>
     </main>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import CartIcon from "./components/CartIcon";
 
 type Product = {
   id: number;
@@ -45,7 +46,27 @@ const products: Product[] = [
     image: "/products/petite-section-3-4-ans.png",
     secondImage: "/products/petite-section-interieur.jpg",
     badge: "3 - 4 ans",
-    href: "/produits/petite-section",
+    href: "/produits/mon-cahier-d-activites-petite-section",
+  },
+  {
+    id: 4,
+    title: "Mon premier imagier interactif",
+    subtitle:
+      "Un imagier ludique pour observer, reconnaître, associer et apprendre en manipulant.",
+    age: "Premiers apprentissages",
+    image: "/products/premier-imagier-interieur.png",
+    badge: "Interactif",
+    href: "/produits/mon-premier-imagier-interactif",
+  },
+  {
+    id: 5,
+    title: "Pack affiches d’apprentissage",
+    subtitle:
+      "Des supports visuels pour apprendre les couleurs, les formes, les lettres et les chiffres.",
+    age: "Apprentissage",
+    image: "/products/supports-apprentissage.png",
+    badge: "Pack",
+    href: "/produits/pack-affiches-dapprentissage",
   },
 ];
 
@@ -70,10 +91,6 @@ export default function Home() {
 
   return (
     <main>
-      {/* =====================================================
-          TOP BAR
-      ====================================================== */}
-
       <div className="topBenefits">
         <div className="topBenefitsInner">
           <span>
@@ -97,10 +114,6 @@ export default function Home() {
           </span>
         </div>
       </div>
-
-      {/* =====================================================
-          HEADER
-      ====================================================== */}
 
       <header className="siteHeader">
         <div className="headerLogoRow">
@@ -138,13 +151,7 @@ export default function Home() {
               <AccountIcon />
             </button>
 
-            <button
-              className="iconButton cartButton"
-              aria-label="Panier"
-            >
-              <CartIcon />
-              <span className="cartCount">0</span>
-            </button>
+            <CartIcon />
           </div>
         </div>
 
@@ -180,8 +187,16 @@ export default function Home() {
                     Imagiers
                   </Link>
 
-                  <Link href="/produits/petite-section">
+                  <Link href="/produits/mon-cahier-d-activites-petite-section">
                     Cahiers d'activités
+                  </Link>
+
+                  <Link href="/produits/mon-premier-imagier-interactif">
+                    Imagier interactif
+                  </Link>
+
+                  <Link href="/produits/pack-affiches-dapprentissage">
+                    Pack affiches
                   </Link>
                 </div>
               </div>
@@ -245,10 +260,6 @@ export default function Home() {
         )}
       </header>
 
-      {/* =====================================================
-          HERO
-      ====================================================== */}
-
       <section className="realHero">
         <div className="container realHeroGrid">
           <div className="realHeroContent">
@@ -309,10 +320,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =====================================================
-          BENEFITS
-      ====================================================== */}
-
       <section className="benefitsBar">
         <div className="container benefitsGrid">
           <Benefit
@@ -340,10 +347,6 @@ export default function Home() {
           />
         </div>
       </section>
-
-      {/* =====================================================
-          PRODUCTS
-      ====================================================== */}
 
       <section
         className="section"
@@ -378,14 +381,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =====================================================
-          PETITE SECTION FEATURE
-      ====================================================== */}
-
       <section className="featureSection">
         <div className="container featureGrid">
           <div className="featureImages">
-            <Link href="/produits/petite-section">
+            <Link href="/produits/mon-cahier-d-activites-petite-section">
               <img
                 src="/products/petite-section-3-4-ans.png"
                 alt="Cahier d'activités Petite Section 3 à 4 ans"
@@ -393,7 +392,7 @@ export default function Home() {
               />
             </Link>
 
-            <Link href="/produits/petite-section">
+            <Link href="/produits/mon-cahier-d-activites-petite-section">
               <img
                 src="/products/petite-section-interieur.jpg"
                 alt="Aperçu des activités Petite Section"
@@ -421,22 +420,14 @@ export default function Home() {
             </p>
 
             <ul className="featureList">
-              <li>
-                Activités adaptées aux 3–4 ans
-              </li>
-              <li>
-                Observation et association
-              </li>
-              <li>
-                Graphisme et motricité fine
-              </li>
-              <li>
-                Premiers apprentissages de maternelle
-              </li>
+              <li>Activités adaptées aux 3–4 ans</li>
+              <li>Observation et association</li>
+              <li>Graphisme et motricité fine</li>
+              <li>Premiers apprentissages de maternelle</li>
             </ul>
 
             <Link
-              href="/produits/petite-section"
+              href="/produits/mon-cahier-d-activites-petite-section"
               className="button buttonDark"
             >
               Découvrir le cahier
@@ -444,10 +435,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* =====================================================
-          PREMIER IMAGIER FEATURE
-      ====================================================== */}
 
       <section className="featureSection alternateFeature">
         <div className="container featureGrid featureGridReverse">
@@ -468,18 +455,10 @@ export default function Home() {
             </p>
 
             <ul className="featureList">
-              <li>
-                Images faciles à reconnaître
-              </li>
-              <li>
-                Vocabulaire du quotidien
-              </li>
-              <li>
-                Support visuel adapté aux tout-petits
-              </li>
-              <li>
-                À découvrir avec un adulte
-              </li>
+              <li>Images faciles à reconnaître</li>
+              <li>Vocabulaire du quotidien</li>
+              <li>Support visuel adapté aux tout-petits</li>
+              <li>À découvrir avec un adulte</li>
             </ul>
 
             <Link
@@ -509,10 +488,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* =====================================================
-          OTHER UNIVERSES
-      ====================================================== */}
 
       <section
         className="section universeSection"
@@ -566,10 +541,12 @@ export default function Home() {
             </article>
 
             <article className="universeCard">
-              <img
-                src="/products/supports-apprentissage.png"
-                alt="Supports d'apprentissage"
-              />
+              <Link href="/produits/pack-affiches-dapprentissage">
+                <img
+                  src="/products/supports-apprentissage.png"
+                  alt="Supports d'apprentissage"
+                />
+              </Link>
 
               <div>
                 <span>Apprentissages</span>
@@ -583,10 +560,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* =====================================================
-          BUSY BOOK STORY
-      ====================================================== */}
 
       <section className="imageStorySection">
         <div className="container imageStoryGrid">
@@ -627,10 +600,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {/* =====================================================
-          REVIEWS
-      ====================================================== */}
 
       <section
         className="reviewsSection"
@@ -678,10 +647,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =====================================================
-          NEWSLETTER
-      ====================================================== */}
-
       <section className="newsletterSection">
         <div className="container newsletter">
           <div>
@@ -719,10 +684,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =====================================================
-          FOOTER
-      ====================================================== */}
-
       <footer
         className="footer"
         id="contact"
@@ -756,7 +717,15 @@ export default function Home() {
                 },
                 {
                   label: "Petite Section",
-                  href: "/produits/petite-section",
+                  href: "/produits/mon-cahier-d-activites-petite-section",
+                },
+                {
+                  label: "Imagier interactif",
+                  href: "/produits/mon-premier-imagier-interactif",
+                },
+                {
+                  label: "Pack affiches",
+                  href: "/produits/pack-affiches-dapprentissage",
                 },
               ]}
             />
@@ -812,10 +781,6 @@ export default function Home() {
     </main>
   );
 }
-
-/* ============================================================
-   COMPONENTS
-============================================================ */
 
 function Benefit({
   number,
@@ -918,10 +883,6 @@ function FooterColumn({
   );
 }
 
-/* ============================================================
-   ICONS
-============================================================ */
-
 function SearchIcon() {
   return (
     <svg
@@ -935,11 +896,7 @@ function SearchIcon() {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <circle
-        cx="11"
-        cy="11"
-        r="7"
-      />
+      <circle cx="11" cy="11" r="7" />
       <path d="m20 20-3.5-3.5" />
     </svg>
   );
@@ -958,42 +915,8 @@ function AccountIcon() {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <circle
-        cx="12"
-        cy="8"
-        r="4"
-      />
+      <circle cx="12" cy="8" r="4" />
       <path d="M5 21c0-4 3-7 7-7s7 3 7 7" />
-    </svg>
-  );
-}
-
-function CartIcon() {
-  return (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M3 4h2l2 11h10l2-8H6" />
-
-      <circle
-        cx="9"
-        cy="20"
-        r="1"
-      />
-
-      <circle
-        cx="17"
-        cy="20"
-        r="1"
-      />
     </svg>
   );
 }

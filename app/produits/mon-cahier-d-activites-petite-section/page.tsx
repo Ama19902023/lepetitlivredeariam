@@ -7,17 +7,20 @@ import {
 } from "@/lib/shopify";
 
 export const metadata: Metadata = {
-  title: "Mon premier imagier dès 12 mois",
+  title: "Mon cahier d'activités Petite Section 3-4 ans",
   description:
-    "Découvrez Mon premier imagier des Cahiers de Ariam, un support éducatif dès 12 mois pour développer le vocabulaire et reconnaître les objets du quotidien.",
+    "Découvrez Mon cahier d'activités Petite Section des Cahiers de Ariam, un cahier éducatif pour accompagner les premiers apprentissages de maternelle.",
   alternates: {
-    canonical: "/produits/mon-premier-imagier",
+    canonical:
+      "/produits/mon-cahier-d-activites-petite-section",
   },
 };
 
-export default async function PremierImagierPage() {
+export default async function PetiteSectionPage() {
   const shopifyProduct =
-    await getShopifyProductByHandle("mon-premier-imagier");
+    await getShopifyProductByHandle(
+      "mon-cahier-d-activites-petite-section"
+    );
 
   const price = formatPrice(
     shopifyProduct?.price ?? null
@@ -76,8 +79,8 @@ export default async function PremierImagierPage() {
         >
           <div>
             <img
-              src="/products/premier-imagier-12-mois.png"
-              alt="Mon premier imagier dès 12 mois"
+              src="/products/petite-section-3-4-ans.png"
+              alt="Mon cahier d'activités Petite Section 3 à 4 ans"
               style={{
                 width: "100%",
                 display: "block",
@@ -98,7 +101,7 @@ export default async function PremierImagierPage() {
                 textTransform: "uppercase",
               }}
             >
-              Dès 12 mois
+              3 - 4 ans
             </span>
 
             <h1
@@ -111,7 +114,7 @@ export default async function PremierImagierPage() {
                 color: "#403228",
               }}
             >
-              Mon premier imagier
+              Mon cahier d’activités Petite Section
             </h1>
 
             <p
@@ -122,9 +125,9 @@ export default async function PremierImagierPage() {
                 lineHeight: 1.8,
               }}
             >
-              Un imagier pensé pour accompagner les premières
-              découvertes, enrichir le vocabulaire et apprendre
-              à reconnaître les objets du quotidien.
+              Un cahier pensé pour accompagner les premiers
+              apprentissages de maternelle à travers des
+              activités simples, progressives et ludiques.
             </p>
 
             <div
@@ -136,10 +139,10 @@ export default async function PremierImagierPage() {
                 fontSize: "15px",
               }}
             >
-              <div>✓ Développe le vocabulaire</div>
-              <div>✓ Favorise la reconnaissance visuelle</div>
-              <div>✓ Encourage l’échange avec l’adulte</div>
-              <div>✓ Adapté aux tout-petits</div>
+              <div>✓ Activités adaptées aux 3–4 ans</div>
+              <div>✓ Développe l’observation</div>
+              <div>✓ Travaille la motricité fine</div>
+              <div>✓ Premiers apprentissages de maternelle</div>
             </div>
 
             <div style={{ marginTop: "30px" }}>
@@ -176,10 +179,10 @@ export default async function PremierImagierPage() {
               variantId={
                 shopifyProduct?.variantId ?? null
               }
-              handle="mon-premier-imagier"
-              title="Mon premier imagier"
+              handle="mon-cahier-d-activites-petite-section"
+              title="Mon cahier d'activités Petite Section"
               price={numericPrice}
-              image="/products/premier-imagier-12-mois.png"
+              image="/products/petite-section-3-4-ans.png"
               stock={stock}
             />
           </div>
@@ -215,7 +218,7 @@ export default async function PremierImagierPage() {
                 textTransform: "uppercase",
               }}
             >
-              Découvrir et apprendre
+              Premiers apprentissages
             </span>
 
             <h2
@@ -227,7 +230,7 @@ export default async function PremierImagierPage() {
                 color: "#403228",
               }}
             >
-              Les premières images du quotidien
+              Apprendre progressivement en s’amusant
             </h2>
 
             <p
@@ -238,15 +241,16 @@ export default async function PremierImagierPage() {
                 lineHeight: 1.9,
               }}
             >
-              L’imagier permet à l’enfant d’observer, reconnaître
-              et nommer progressivement les éléments qui
-              l’entourent.
+              Le cahier propose des activités variées pour
+              travailler l’observation, l’association, le
+              graphisme, les lettres et les premières notions
+              de maternelle.
             </p>
           </div>
 
           <img
-            src="/products/premier-imagier-interieur.png"
-            alt="Intérieur de Mon premier imagier"
+            src="/products/petite-section-interieur.jpg"
+            alt="Aperçu des activités Petite Section"
             style={{
               width: "100%",
               display: "block",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import CartProvider from "./components/CartProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.lescahiersdeariam.fr"),
@@ -10,25 +11,18 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Découvrez Les Cahiers de Ariam : busy books, imagiers et cahiers d’activités éducatives pour accompagner les enfants dès 12 mois dans leurs apprentissages.",
+    "Découvrez Les Cahiers de Ariam : cahiers éducatifs, imagiers et supports d’apprentissage pour accompagner les enfants dans leurs découvertes, leur autonomie et leurs premiers apprentissages.",
 
   keywords: [
     "cahier éducatif enfant",
-    "busy book",
     "busy book enfant",
+    "livret activité enfant",
     "imagier enfant",
-    "cahier activités maternelle",
-    "activité enfant 2 ans",
-    "activité enfant 3 ans",
-    "livre éducatif enfant",
+    "activité éducative",
+    "motricité fine",
     "apprentissage enfant",
+    "cahier maternelle",
     "Les Cahiers de Ariam",
-  ],
-
-  authors: [
-    {
-      name: "Les Cahiers de Ariam",
-    },
   ],
 
   creator: "Les Cahiers de Ariam",
@@ -45,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Les Cahiers de Ariam",
     title: "Les Cahiers de Ariam | Cahiers éducatifs pour enfants",
     description:
-      "Busy books, imagiers et cahiers d’activités éducatives pour accompagner les enfants dans leurs premières découvertes.",
+      "Des cahiers éducatifs et ludiques pensés pour accompagner les enfants dans leurs découvertes et leurs premiers apprentissages.",
     images: [
       {
         url: "/products/busy-book-18-mois.png",
@@ -60,13 +54,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Les Cahiers de Ariam",
     description:
-      "Cahiers éducatifs et ludiques pour accompagner les enfants dans leurs apprentissages.",
+      "Cahiers éducatifs et supports d’apprentissage pour enfants.",
     images: ["/products/busy-book-18-mois.png"],
   },
 
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
@@ -77,7 +75,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }

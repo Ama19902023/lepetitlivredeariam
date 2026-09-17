@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AddToCartButton } from "@/app/components/AddToCartButton";
+import {
+  formatPrice,
+  getShopifyProductByHandle,
+} from "@/lib/shopify";
 
 export const metadata: Metadata = {
   title: "Busy Book dès 18 mois | Cahier éducatif enfant",
@@ -24,7 +29,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BusyBookPage() {
+export default async function BusyBookPage() {
+  const shopifyProduct =
+    await getShopifyProductByHandle("mon-busy-book");
+
+  const price = formatPrice(
+    shopifyProduct?.price ?? null
+  );
+
+  const numericPrice = Number(
+    shopifyProduct?.price ?? 0
+  );
+
+  const stock =
+    shopifyProduct?.inventoryQuantity ?? 0;
+
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -38,6 +57,20 @@ export default function BusyBookPage() {
       "@type": "Brand",
       name: "Les Cahiers de Ariam",
     },
+    ...(shopifyProduct?.price
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "EUR",
+            price: shopifyProduct.price,
+            availability:
+              stock > 0
+                ? "https://schema.org/InStock"
+                : "https://schema.org/OutOfStock",
+            url: "https://www.lescahiersdeariam.fr/produits/mon-busy-book",
+          },
+        }
+      : {}),
   };
 
   return (
@@ -160,31 +193,61 @@ export default function BusyBookPage() {
 
             <div
               style={{
-                marginTop: "34px",
-                padding: "24px",
-                border: "1px solid #eee7df",
+                marginTop: "30px",
               }}
             >
-              <strong
+              <div
                 style={{
-                  display: "block",
-                  marginBottom: "8px",
-                  fontSize: "15px",
+                  fontFamily: "Georgia, serif",
+                  fontSize: "34px",
+                  color: "#403228",
+                  marginBottom: "10px",
                 }}
               >
-                Bientôt disponible à la commande
-              </strong>
+                {price || "Prix indisponible"}
+              </div>
 
-              <p
+              <div
                 style={{
-                  margin: 0,
-                  color: "#756359",
-                  lineHeight: 1.6,
                   fontSize: "14px",
+                  fontWeight: 600,
+                  color:
+                    stock > 0
+                      ? "#4f7358"
+                      : "#b64c4c",
                 }}
               >
-                Le paiement sera bientôt relié à notre boutique en ligne.
-              </p>
+                {stock > 0
+                  ? `En stock — ${stock} disponible${
+                      stock > 1 ? "s" : ""
+                    }`
+                  : "Rupture de stock"}
+              </div>
+            </div>
+
+            <AddToCartButton
+              variantId={
+                shopifyProduct?.variantId ?? null
+              }
+              handle="mon-busy-book"
+              title="Mon Busy Book"
+              price={numericPrice}
+              image="/products/busy-book-18-mois.png"
+              stock={stock}
+            />
+
+            <div
+              style={{
+                marginTop: "18px",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "16px",
+                color: "#756359",
+                fontSize: "13px",
+              }}
+            >
+              <span>✓ Paiement sécurisé</span>
+              <span>✓ Livraison offerte dès 49 €</span>
             </div>
           </div>
         </div>

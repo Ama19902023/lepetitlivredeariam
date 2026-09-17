@@ -23,7 +23,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/produits/petite-section`,
+      url: `${baseUrl}/produits/mon-cahier-d-activites-petite-section`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/produits/mon-premier-imagier-interactif`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/produits/pack-affiches-dapprentissage`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ProductGallery from "@/app/components/ProductGallery";
 import { AddToCartButton } from "@/app/components/AddToCartButton";
 import {
   formatPrice,
@@ -7,25 +8,11 @@ import {
 } from "@/lib/shopify";
 
 export const metadata: Metadata = {
-  title: "Busy Book dès 18 mois | Cahier éducatif enfant",
+  title: "Mon Busy Book dès 18 mois",
   description:
-    "Découvrez Mon Busy Book des Cahiers de Ariam, un cahier éducatif et ludique dès 18 mois pour apprendre en manipulant et développer la motricité fine.",
+    "Découvrez Mon Busy Book des Cahiers de Ariam, un cahier éducatif et ludique dès 18 mois pour apprendre en manipulant, développer la motricité fine et favoriser l'autonomie.",
   alternates: {
     canonical: "/produits/mon-busy-book",
-  },
-  openGraph: {
-    title: "Mon Busy Book dès 18 mois | Les Cahiers de Ariam",
-    description:
-      "Un cahier éducatif et ludique pour accompagner les premières découvertes dès 18 mois.",
-    url: "https://www.lescahiersdeariam.fr/produits/mon-busy-book",
-    images: [
-      {
-        url: "/products/busy-book-18-mois.png",
-        width: 1200,
-        height: 1200,
-        alt: "Mon Busy Book dès 18 mois",
-      },
-    ],
   },
 };
 
@@ -44,44 +31,9 @@ export default async function BusyBookPage() {
   const stock =
     shopifyProduct?.inventoryQuantity ?? 0;
 
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "Mon Busy Book dès 18 mois",
-    image: [
-      "https://www.lescahiersdeariam.fr/products/busy-book-18-mois.png",
-    ],
-    description:
-      "Cahier éducatif et ludique dès 18 mois pour apprendre en manipulant et accompagner les premières découvertes de l'enfant.",
-    brand: {
-      "@type": "Brand",
-      name: "Les Cahiers de Ariam",
-    },
-    ...(shopifyProduct?.price
-      ? {
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "EUR",
-            price: shopifyProduct.price,
-            availability:
-              stock > 0
-                ? "https://schema.org/InStock"
-                : "https://schema.org/OutOfStock",
-            url: "https://www.lescahiersdeariam.fr/produits/mon-busy-book",
-          },
-        }
-      : {}),
-  };
-
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productJsonLd),
-        }}
-      />
-
+      {/* RETOUR */}
       <section
         style={{
           padding: "30px 0",
@@ -108,6 +60,7 @@ export default async function BusyBookPage() {
         </div>
       </section>
 
+      {/* PRODUIT */}
       <section
         style={{
           padding: "70px 0 90px",
@@ -124,18 +77,27 @@ export default async function BusyBookPage() {
             alignItems: "center",
           }}
         >
+          {/* GALERIE */}
           <div>
-            <img
-              src="/products/busy-book-18-mois.png"
-              alt="Mon Busy Book à partir de 18 mois"
-              style={{
-                width: "100%",
-                display: "block",
-                objectFit: "cover",
-              }}
+            <ProductGallery
+              images={[
+                {
+                  src: "/products/busy-book-18-mois.png",
+                  alt: "Mon Busy Book - couverture",
+                },
+                {
+                  src: "/products/busy-book-activites.jpg",
+                  alt: "Mon Busy Book - aperçu des 28 activités",
+                },
+                {
+                  src: "/products/busy-book-vehicules.png",
+                  alt: "Mon Busy Book - activité interactive sur les véhicules",
+                },
+              ]}
             />
           </div>
 
+          {/* INFOS PRODUIT */}
           <div>
             <span
               style={{
@@ -172,8 +134,9 @@ export default async function BusyBookPage() {
                 lineHeight: 1.8,
               }}
             >
-              Un cahier éducatif et ludique pensé pour accompagner les
-              premières découvertes de l’enfant à partir de 18 mois.
+              Un cahier éducatif et ludique pensé pour accompagner
+              les premières découvertes de l’enfant à partir de
+              18 mois.
             </p>
 
             <div
@@ -191,11 +154,8 @@ export default async function BusyBookPage() {
               <div>✓ Activités adaptées aux tout-petits</div>
             </div>
 
-            <div
-              style={{
-                marginTop: "30px",
-              }}
-            >
+            {/* PRIX + STOCK */}
+            <div style={{ marginTop: "30px" }}>
               <div
                 style={{
                   fontFamily: "Georgia, serif",
@@ -225,6 +185,7 @@ export default async function BusyBookPage() {
               </div>
             </div>
 
+            {/* PANIER */}
             <AddToCartButton
               variantId={
                 shopifyProduct?.variantId ?? null
@@ -253,6 +214,7 @@ export default async function BusyBookPage() {
         </div>
       </section>
 
+      {/* SECTION DESCRIPTION */}
       <section
         style={{
           padding: "80px 0",
@@ -264,47 +226,165 @@ export default async function BusyBookPage() {
           style={{
             width: "min(1100px, calc(100% - 40px))",
             margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "60px",
+            alignItems: "center",
           }}
         >
-          <span
+          <div>
+            <span
+              style={{
+                display: "block",
+                marginBottom: "12px",
+                color: "#bd7c67",
+                fontSize: "11px",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+              }}
+            >
+              Apprendre en manipulant
+            </span>
+
+            <h2
+              style={{
+                margin: 0,
+                fontFamily: "Georgia, serif",
+                fontSize: "clamp(36px, 4vw, 52px)",
+                fontWeight: 400,
+                lineHeight: 1.15,
+                color: "#403228",
+              }}
+            >
+              28 activités pour découvrir et apprendre
+            </h2>
+
+            <p
+              style={{
+                marginTop: "22px",
+                color: "#756359",
+                fontSize: "17px",
+                lineHeight: 1.9,
+              }}
+            >
+              Mon Busy Book propose des activités variées pour
+              travailler l’observation, l’association, les formes,
+              les couleurs, les animaux, les objets du quotidien
+              et les premières notions.
+            </p>
+
+            <p
+              style={{
+                marginTop: "18px",
+                color: "#756359",
+                fontSize: "17px",
+                lineHeight: 1.9,
+              }}
+            >
+              Les éléments à manipuler rendent l’apprentissage plus
+              concret et permettent à l’enfant de participer
+              activement à chaque activité.
+            </p>
+          </div>
+
+          <img
+            src="/products/busy-book-activites.jpg"
+            alt="Aperçu des activités du Busy Book"
             style={{
+              width: "100%",
               display: "block",
-              marginBottom: "12px",
-              color: "#bd7c67",
-              fontSize: "11px",
-              fontWeight: 700,
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
+              objectFit: "contain",
             }}
-          >
-            Apprendre en jouant
-          </span>
+          />
+        </div>
+      </section>
 
-          <h2
+      {/* SECTION MANIPULATION */}
+      <section
+        style={{
+          padding: "80px 0",
+          borderTop: "1px solid #eee7df",
+          background: "#faf8f5",
+        }}
+      >
+        <div
+          style={{
+            width: "min(1100px, calc(100% - 40px))",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "60px",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src="/products/busy-book-vehicules.png"
+            alt="Enfant manipulant une activité du Busy Book"
             style={{
-              margin: 0,
-              fontFamily: "Georgia, serif",
-              fontSize: "clamp(36px, 4vw, 52px)",
-              fontWeight: 400,
-              color: "#403228",
+              width: "100%",
+              display: "block",
+              objectFit: "contain",
             }}
-          >
-            Un support pensé pour les premières découvertes
-          </h2>
+          />
 
-          <p
-            style={{
-              marginTop: "22px",
-              color: "#756359",
-              fontSize: "17px",
-              lineHeight: 1.9,
-            }}
-          >
-            Mon Busy Book propose des activités simples et visuelles pour
-            permettre à l’enfant de manipuler, observer, reconnaître et
-            associer différents éléments. Il accompagne les premiers
-            apprentissages de manière progressive et ludique.
-          </p>
+          <div>
+            <span
+              style={{
+                display: "block",
+                marginBottom: "12px",
+                color: "#bd7c67",
+                fontSize: "11px",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+              }}
+            >
+              Manipuler et comprendre
+            </span>
+
+            <h2
+              style={{
+                margin: 0,
+                fontFamily: "Georgia, serif",
+                fontSize: "clamp(36px, 4vw, 52px)",
+                fontWeight: 400,
+                lineHeight: 1.15,
+                color: "#403228",
+              }}
+            >
+              Une approche ludique et interactive
+            </h2>
+
+            <p
+              style={{
+                marginTop: "22px",
+                color: "#756359",
+                fontSize: "17px",
+                lineHeight: 1.9,
+              }}
+            >
+              L’enfant observe, choisit puis place les éléments sur
+              la bonne zone. Cette manipulation favorise la
+              concentration, la coordination œil-main et la
+              motricité fine.
+            </p>
+
+            <div
+              style={{
+                marginTop: "28px",
+                display: "grid",
+                gap: "12px",
+                color: "#5f4f44",
+                fontSize: "15px",
+              }}
+            >
+              <div>✓ Observer et reconnaître</div>
+              <div>✓ Associer les éléments</div>
+              <div>✓ Manipuler avec précision</div>
+              <div>✓ Apprendre à son rythme</div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

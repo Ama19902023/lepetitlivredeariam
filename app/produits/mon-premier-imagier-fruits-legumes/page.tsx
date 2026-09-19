@@ -430,16 +430,16 @@ export default function Home() {
               title="Informations"
               links={[
                 {
-                  label: "Livraison",
-                  href: "#",
+                  label: "Livraison & délais",
+                  href: "/livraison",
                 },
                 {
-                  label: "Paiement",
-                  href: "#",
+                  label: "Paiement sécurisé",
+                  href: "/paiement",
                 },
                 {
-                  label: "Retours",
-                  href: "#",
+                  label: "Conditions générales de vente",
+                  href: "/cgv",
                 },
               ]}
             />
@@ -449,15 +449,15 @@ export default function Home() {
               links={[
                 {
                   label: "Contact",
-                  href: "#contact",
+                  href: "/contact",
                 },
                 {
                   label: "Instagram",
-                  href: "#",
+                  href: "https://www.instagram.com/les_cahiers_de_ariam/",
                 },
                 {
                   label: "FAQ",
-                  href: "#",
+                  href: "/faq",
                 },
               ]}
             />
@@ -563,6 +563,16 @@ function FooterColumn({
           <a
             key={link.label}
             href={link.href}
+            target={
+              link.href.startsWith("http")
+                ? "_blank"
+                : undefined
+            }
+            rel={
+              link.href.startsWith("http")
+                ? "noopener noreferrer"
+                : undefined
+            }
           >
             {link.label}
           </a>

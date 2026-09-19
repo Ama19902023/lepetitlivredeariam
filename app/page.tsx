@@ -75,6 +75,7 @@ export default function Home() {
 
   return (
     <main>
+      {/* HEADER */}
       <header className="siteHeader">
         <div className="headerLogoRow">
           <Link href="/" className="brandLogoCentered">
@@ -124,6 +125,7 @@ export default function Home() {
         )}
       </header>
 
+      {/* AVANTAGES */}
       <section className="benefitsBar">
         <div className="container benefitsGrid">
           <Benefit
@@ -152,6 +154,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COLLECTION */}
       <section className="section" id="collection">
         <div className="container">
           <div className="sectionHeader">
@@ -175,6 +178,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PETITE SECTION */}
       <section className="featureSection">
         <div className="container featureGrid">
           <div className="featureImages">
@@ -230,6 +234,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PREMIER IMAGIER */}
       <section className="featureSection alternateFeature">
         <div className="container featureGrid featureGridReverse">
           <div className="featureContent">
@@ -281,6 +286,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* UNIVERS EDUCATIFS */}
       <section
         className="section universeSection"
         id="univers"
@@ -300,6 +306,7 @@ export default function Home() {
           </div>
 
           <div className="universeGrid">
+            {/* FRUITS & LEGUMES */}
             <article className="universeCard">
               <Link href="/produits/mon-premier-imagier-fruits-legumes">
                 <img
@@ -324,6 +331,7 @@ export default function Home() {
               </div>
             </article>
 
+            {/* ANIMAUX & VEHICULES */}
             <article className="universeCard">
               <Link href="/produits/mon-premier-imagier-animaux-vehicules">
                 <img
@@ -348,6 +356,7 @@ export default function Home() {
               </div>
             </article>
 
+            {/* PACK AFFICHES */}
             <article className="universeCard">
               <Link href="/produits/pack-affiches-dapprentissage">
                 <img
@@ -375,6 +384,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer className="footer" id="contact">
         <div className="container">
           <div className="footerGrid">
@@ -430,16 +440,12 @@ export default function Home() {
               title="Informations"
               links={[
                 {
-                  label: "Livraison",
-                  href: "#",
+                  label: "Livraison & délais",
+                  href: "/livraison",
                 },
                 {
-                  label: "Paiement",
-                  href: "#",
-                },
-                {
-                  label: "Retours",
-                  href: "#",
+                  label: "Paiement sécurisé",
+                  href: "/paiement",
                 },
               ]}
             />
@@ -449,23 +455,28 @@ export default function Home() {
               links={[
                 {
                   label: "Contact",
-                  href: "#contact",
+                  href: "/contact",
                 },
                 {
                   label: "Instagram",
-                  href: "#",
+                  href: "https://www.instagram.com/les_cahiers_de_ariam/",
                 },
                 {
                   label: "FAQ",
-                  href: "#",
+                  href: "/faq",
                 },
               ]}
             />
           </div>
 
           <div className="footerBottom">
-            <span>© 2026 Les Cahiers de Ariam</span>
-            <span>Tous droits réservés</span>
+            <span>
+              © 2026 Les Cahiers de Ariam
+            </span>
+
+            <span>
+              Tous droits réservés
+            </span>
           </div>
         </div>
       </footer>
@@ -484,7 +495,9 @@ function Benefit({
 }) {
   return (
     <div className="benefit">
-      <div className="benefitIcon">{number}</div>
+      <div className="benefitIcon">
+        {number}
+      </div>
 
       <div>
         <strong>{title}</strong>
@@ -563,6 +576,16 @@ function FooterColumn({
           <a
             key={link.label}
             href={link.href}
+            target={
+              link.href.startsWith("http")
+                ? "_blank"
+                : undefined
+            }
+            rel={
+              link.href.startsWith("http")
+                ? "noopener noreferrer"
+                : undefined
+            }
           >
             {link.label}
           </a>

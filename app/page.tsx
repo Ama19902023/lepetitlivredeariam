@@ -50,6 +50,26 @@ const products: Product[] = [
   },
   {
     id: 4,
+    title: "Mon premier imagier – Fruits & légumes",
+    subtitle:
+      "Découvrir les aliments et enrichir le vocabulaire du quotidien.",
+    age: "Dès 12 mois",
+    image: "/products/imagiers-fruits-legumes.png",
+    badge: "Dès 12 mois",
+    href: "/produits/mon-premier-imagier-fruits-legumes",
+  },
+  {
+    id: 5,
+    title: "Mon premier imagier – Animaux & véhicules",
+    subtitle:
+      "Reconnaître et nommer les animaux, transports et objets familiers.",
+    age: "Dès 12 mois",
+    image: "/products/imagiers-animaux-vehicules.png",
+    badge: "Dès 12 mois",
+    href: "/produits/mon-premier-imagier-animaux-vehicules",
+  },
+  {
+    id: 6,
     title: "Pack affiches d’apprentissage",
     subtitle:
       "Des supports visuels pour apprendre les couleurs, les formes, les lettres et les chiffres.",
@@ -144,7 +164,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COLLECTION */}
+      {/* NOS CAHIERS */}
       <section className="section" id="collection">
         <div className="container">
           <div className="sectionHeader">
@@ -164,104 +184,6 @@ export default function Home() {
                 product={product}
               />
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* UNIVERS EDUCATIFS */}
-      <section
-        className="section universeSection"
-        id="univers"
-      >
-        <div className="container">
-          <div className="centerHeader">
-            <span className="eyebrow">
-              Découvrir autrement
-            </span>
-
-            <h2>Nos univers éducatifs</h2>
-
-            <p>
-              Des supports pensés pour accompagner chaque
-              étape des apprentissages de l’enfant.
-            </p>
-          </div>
-
-          <div className="universeGrid">
-            {/* FRUITS & LEGUMES */}
-            <article className="universeCard">
-              <Link href="/produits/mon-premier-imagier-fruits-legumes">
-                <img
-                  src="/products/imagiers-fruits-legumes.png"
-                  alt="Imagiers fruits et légumes"
-                />
-              </Link>
-
-              <div>
-                <span>Dès 12 mois</span>
-
-                <h3>
-                  <Link href="/produits/mon-premier-imagier-fruits-legumes">
-                    Fruits & légumes
-                  </Link>
-                </h3>
-
-                <p>
-                  Découvrir les aliments et enrichir le
-                  vocabulaire du quotidien.
-                </p>
-              </div>
-            </article>
-
-            {/* ANIMAUX & VEHICULES */}
-            <article className="universeCard">
-              <Link href="/produits/mon-premier-imagier-animaux-vehicules">
-                <img
-                  src="/products/imagiers-animaux-vehicules.png"
-                  alt="Imagiers animaux et véhicules"
-                />
-              </Link>
-
-              <div>
-                <span>Dès 12 mois</span>
-
-                <h3>
-                  <Link href="/produits/mon-premier-imagier-animaux-vehicules">
-                    Animaux & véhicules
-                  </Link>
-                </h3>
-
-                <p>
-                  Reconnaître et nommer les animaux,
-                  transports et objets familiers.
-                </p>
-              </div>
-            </article>
-
-            {/* PACK AFFICHES */}
-            <article className="universeCard">
-              <Link href="/produits/pack-affiches-dapprentissage">
-                <img
-                  src="/products/supports-apprentissage.png"
-                  alt="Supports d'apprentissage"
-                />
-              </Link>
-
-              <div>
-                <span>Apprentissages</span>
-
-                <h3>
-                  <Link href="/produits/pack-affiches-dapprentissage">
-                    Couleurs, formes & lettres
-                  </Link>
-                </h3>
-
-                <p>
-                  Des supports visuels pour apprendre,
-                  tracer, reconnaître et manipuler.
-                </p>
-              </div>
-            </article>
           </div>
         </div>
       </section>

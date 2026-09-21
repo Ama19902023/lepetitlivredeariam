@@ -50,16 +50,6 @@ const products: Product[] = [
   },
   {
     id: 4,
-    title: "Mon premier imagier interactif",
-    subtitle:
-      "Un imagier ludique pour observer, reconnaître, associer et apprendre en manipulant.",
-    age: "Premiers apprentissages",
-    image: "/products/premier-imagier-interieur.png",
-    badge: "Interactif",
-    href: "/produits/mon-premier-imagier-interactif",
-  },
-  {
-    id: 5,
     title: "Pack affiches d’apprentissage",
     subtitle:
       "Des supports visuels pour apprendre les couleurs, les formes, les lettres et les chiffres.",
@@ -174,114 +164,6 @@ export default function Home() {
                 product={product}
               />
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PETITE SECTION */}
-      <section className="featureSection">
-        <div className="container featureGrid">
-          <div className="featureImages">
-            <Link href="/produits/mon-cahier-d-activites-petite-section">
-              <img
-                src="/products/petite-section-3-4-ans.png"
-                alt="Cahier d'activités Petite Section 3 à 4 ans"
-                className="featureMainImage"
-              />
-            </Link>
-
-            <Link href="/produits/mon-cahier-d-activites-petite-section">
-              <img
-                src="/products/petite-section-interieur.jpg"
-                alt="Aperçu des activités Petite Section"
-                className="featureSecondImage"
-              />
-            </Link>
-          </div>
-
-          <div className="featureContent">
-            <span className="eyebrow">
-              Maternelle · 3 à 4 ans
-            </span>
-
-            <h2>
-              Mon cahier d’activités
-              <br />
-              Petite Section
-            </h2>
-
-            <p>
-              Des activités variées pour travailler les
-              émotions, les saisons, les lettres, le
-              graphisme, l’observation et les premiers
-              apprentissages.
-            </p>
-
-            <ul className="featureList">
-              <li>Activités adaptées aux 3–4 ans</li>
-              <li>Observation et association</li>
-              <li>Graphisme et motricité fine</li>
-              <li>Premiers apprentissages de maternelle</li>
-            </ul>
-
-            <Link
-              href="/produits/mon-cahier-d-activites-petite-section"
-              className="button buttonDark"
-            >
-              Découvrir le cahier
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* PREMIER IMAGIER */}
-      <section className="featureSection alternateFeature">
-        <div className="container featureGrid featureGridReverse">
-          <div className="featureContent">
-            <span className="eyebrow">
-              Dès 12 mois
-            </span>
-
-            <h2>Mon premier imagier</h2>
-
-            <p>
-              Un support simple et visuel pour reconnaître
-              les objets, enrichir le vocabulaire et
-              accompagner les premières découvertes de
-              l’enfant.
-            </p>
-
-            <ul className="featureList">
-              <li>Images faciles à reconnaître</li>
-              <li>Vocabulaire du quotidien</li>
-              <li>Support visuel adapté aux tout-petits</li>
-              <li>À découvrir avec un adulte</li>
-            </ul>
-
-            <Link
-              href="/produits/mon-premier-imagier"
-              className="button buttonDark"
-            >
-              Découvrir l’imagier
-            </Link>
-          </div>
-
-          <div className="featureImages">
-            <Link href="/produits/mon-premier-imagier">
-              <img
-                src="/products/premier-imagier-12-mois.png"
-                alt="Mon premier imagier dès 12 mois"
-                className="featureMainImage"
-              />
-            </Link>
-
-            <Link href="/produits/mon-premier-imagier">
-              <img
-                src="/products/premier-imagier-interieur.png"
-                alt="Aperçu intérieur de Mon premier imagier"
-                className="featureSecondImage"
-              />
-            </Link>
           </div>
         </div>
       </section>

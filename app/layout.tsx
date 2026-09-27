@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.lescahiersdeariam.fr"),
 
   title: {
-    default: "Les Cahiers de Ariam | Cahiers éducatifs pour enfants",
-    template: "%s | Les Cahiers de Ariam",
+    default: "Les cahiers de Ariam | Cahiers éducatifs pour enfants",
+    template: "%s | Les cahiers de Ariam",
   },
 
   description:
-    "Découvrez Les Cahiers de Ariam : cahiers éducatifs, imagiers et supports d’apprentissage pour accompagner les enfants dans leurs découvertes, leur autonomie et leurs premiers apprentissages.",
+    "Découvrez Les cahiers de Ariam : cahiers éducatifs, imagiers et supports d’apprentissage pour accompagner les enfants dans leurs découvertes, leur autonomie et leurs premiers apprentissages.",
 
   keywords: [
     "cahier éducatif enfant",
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     "Les Cahiers de Ariam",
   ],
 
-  creator: "Les Cahiers de Ariam",
-  publisher: "Les Cahiers de Ariam",
+  creator: "Les cahiers de Ariam",
+  publisher: "Les cahiers de Ariam",
 
   alternates: {
     canonical: "/",
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     url: "https://www.lescahiersdeariam.fr",
-    siteName: "Les Cahiers de Ariam",
-    title: "Les Cahiers de Ariam | Cahiers éducatifs pour enfants",
+    siteName: "Les cahiers de Ariam",
+    title: "Les cahiers de Ariam | Cahiers éducatifs pour enfants",
     description:
       "Des cahiers éducatifs et ludiques pensés pour accompagner les enfants dans leurs découvertes et leurs premiers apprentissages.",
     images: [
@@ -45,14 +45,14 @@ export const metadata: Metadata = {
         url: "/products/busy-book-18-mois.png",
         width: 1200,
         height: 1200,
-        alt: "Les Cahiers de Ariam - Mon Busy Book",
+        alt: "Les cahiers de Ariam - Mon Busy Book",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Les Cahiers de Ariam",
+    title: "Les cahiers de Ariam",
     description:
       "Cahiers éducatifs et supports d’apprentissage pour enfants.",
     images: ["/products/busy-book-18-mois.png"],

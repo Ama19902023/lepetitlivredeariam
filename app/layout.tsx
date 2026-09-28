@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.lescahiersdeariam.fr"),
 
   title: {
-    default: "Les cahiers de Ariam | Cahiers éducatifs pour enfants",
-    template: "%s | Les cahiers de Ariam",
+    default: "Les cahiers d'Ariam | Cahiers éducatifs pour enfants",
+    template: "%s | Les cahiers d'Ariam",
   },
 
   description:
-    "Découvrez Les cahiers de Ariam : cahiers éducatifs, imagiers et supports d’apprentissage pour accompagner les enfants dans leurs découvertes, leur autonomie et leurs premiers apprentissages.",
+    "Découvrez Les cahiers d'Ariam : cahiers éducatifs, imagiers et supports d’apprentissage pour accompagner les enfants dans leurs découvertes, leur autonomie et leurs premiers apprentissages.",
 
   keywords: [
     "cahier éducatif enfant",
@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     "motricité fine",
     "apprentissage enfant",
     "cahier maternelle",
-    "Les Cahiers de Ariam",
+    "Les Cahiers d'Ariam",
   ],
 
-  creator: "Les cahiers de Ariam",
-  publisher: "Les cahiers de Ariam",
+  creator: "Les cahiers d'Ariam",
+  publisher: "Les cahiers d'Ariam",
 
   alternates: {
     canonical: "/",
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     url: "https://www.lescahiersdeariam.fr",
-    siteName: "Les cahiers de Ariam",
-    title: "Les cahiers de Ariam | Cahiers éducatifs pour enfants",
+    siteName: "Les cahiers d'Ariam",
+    title: "Les cahiers d'Ariam | Cahiers éducatifs pour enfants",
     description:
       "Des cahiers éducatifs et ludiques pensés pour accompagner les enfants dans leurs découvertes et leurs premiers apprentissages.",
     images: [
@@ -45,14 +45,14 @@ export const metadata: Metadata = {
         url: "/products/busy-book-18-mois.png",
         width: 1200,
         height: 1200,
-        alt: "Les cahiers de Ariam - Mon Busy Book",
+        alt: "Les cahiers d'Ariam - Mon Busy Book",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Les cahiers de Ariam",
+    title: "Les cahiers d'Ariam",
     description:
       "Cahiers éducatifs et supports d’apprentissage pour enfants.",
     images: ["/products/busy-book-18-mois.png"],

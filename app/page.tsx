@@ -90,8 +90,8 @@ export default function Home() {
         <div className="headerLogoRow">
           <Link href="/" className="brandLogoCentered">
             <img
-              src="/logo-ariam.png"
-              alt="Les Cahiers de Ariam"
+              src="/logo-ariam.jpeg"
+              alt="Les Cahiers d'Ariam"
               className="brandLogoImageCentered"
             />
           </Link>
@@ -194,8 +194,8 @@ export default function Home() {
           <div className="footerGrid">
             <div className="footerBrand">
               <img
-                src="/logo-ariam.png"
-                alt="Les Cahiers de Ariam"
+                src="/logo-ariam.jpeg"
+                alt="Les Cahiers d'Ariam"
                 className="footerLogo"
               />
 

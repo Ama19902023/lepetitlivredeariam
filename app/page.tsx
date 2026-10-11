@@ -84,33 +84,36 @@ export default function Home() {
   const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <main>
-      {/* HEADER */}
+    <>
       <header className="siteHeader">
-        <div className="headerLogoRow">
-          <Link href="/" className="brandLogoCentered">
+        <div className="headerInner">
+          <div className="headerSpacer" />
+
+          <Link href="/" className="logoLink" aria-label="Les cahiers d'Ariam">
             <img
               src="/logo-ariam.jpeg"
-              alt="Les Cahiers d'Ariam"
-              className="brandLogoImageCentered"
+              alt="Les cahiers d'Ariam"
+              className="siteLogo"
             />
           </Link>
 
-          <div className="headerActions headerActionsTop">
+          <div className="headerActions">
             <button
-              className="iconButton desktopOnly"
-              onClick={() => setSearchOpen(!searchOpen)}
+              type="button"
+              className="headerIconButton"
               aria-label="Rechercher"
+              onClick={() => setSearchOpen((value) => !value)}
             >
               <SearchIcon />
             </button>
 
-            <button
-              className="iconButton desktopOnly"
+            <Link
+              href="/account"
+              className="headerIconButton"
               aria-label="Mon compte"
             >
               <AccountIcon />
-            </button>
+            </Link>
 
             <CartIcon />
           </div>
@@ -118,16 +121,19 @@ export default function Home() {
 
         {searchOpen && (
           <div className="searchPanel">
-            <div className="searchContainer">
-              <SearchIcon />
-
+            <div className="searchPanelInner">
               <input
-                type="text"
-                placeholder="Rechercher un cahier..."
+                type="search"
+                placeholder="Rechercher un cahier, un imagier..."
+                className="searchInput"
                 autoFocus
               />
 
-              <button onClick={() => setSearchOpen(false)}>
+              <button
+                type="button"
+                className="searchClose"
+                onClick={() => setSearchOpen(false)}
+              >
                 Fermer
               </button>
             </div>
@@ -135,156 +141,199 @@ export default function Home() {
         )}
       </header>
 
-      {/* AVANTAGES */}
       <section className="benefitsBar">
-        <div className="container benefitsGrid">
+        <div className="benefitsGrid">
           <Benefit
             number="01"
-            title="Apprendre en jouant"
+            title="APPRENDRE EN JOUANT"
             text="Des activités pensées pour les enfants"
           />
 
           <Benefit
             number="02"
-            title="Adapté à chaque âge"
+            title="ADAPTÉ À CHAQUE ÂGE"
             text="Des supports dès 12 mois"
           />
 
           <Benefit
             number="03"
-            title="Manipuler & découvrir"
+            title="MANIPULER & DÉCOUVRIR"
             text="Pour favoriser l’autonomie"
           />
 
           <Benefit
             number="04"
-            title="Créé avec soin"
+            title="CRÉÉ AVEC SOIN"
             text="Une sélection pédagogique"
           />
         </div>
       </section>
 
-      {/* NOS CAHIERS */}
-      <section className="section" id="collection">
-        <div className="container">
-          <div className="sectionHeader">
-            <div>
-              <span className="eyebrow">
-                Notre collection
-              </span>
+      <main>
+        <section className="productsSection">
+          <div className="container">
+            <div className="sectionHeading">
+              <p className="eyebrow">NOTRE COLLECTION</p>
 
-              <h2>Nos cahiers</h2>
+              <h1>Nos cahiers</h1>
+
+              <Link href="/fournitures" className="fournituresLink">
+                Découvrir nos fournitures & accessoires →
+              </Link>
+            </div>
+
+            <div className="realProductGrid">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
             </div>
           </div>
+        </section>
 
-          <div className="realProductGrid">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-              />
-            ))}
+        <section className="fournituresHomeSection">
+          <div className="container">
+            <div className="fournituresHomeCard">
+              <div className="fournituresHomeContent">
+                <p className="eyebrow">NOUVEL UNIVERS</p>
+
+                <h2>Fournitures & accessoires</h2>
+
+                <p>
+                  Retrouvez prochainement une sélection de matériel pour
+                  accompagner les activités, les premiers apprentissages et la
+                  créativité des enfants.
+                </p>
+
+                <Link href="/fournitures" className="fournituresButton">
+                  Découvrir la rubrique
+                </Link>
+              </div>
+
+              <div className="fournituresCategories">
+                <span>✏️ Écriture & dessin</span>
+                <span>🎨 Activités créatives</span>
+                <span>🧰 Rangement</span>
+                <span>📚 Accessoires pour cahiers</span>
+              </div>
+            </div>
           </div>
+        </section>
+      </main>
+
+      <footer className="siteFooter">
+        <div className="container footerGrid">
+          <div className="footerBrand">
+            <img
+              src="/logo-ariam.jpeg"
+              alt="Les cahiers d'Ariam"
+              className="footerLogo"
+            />
+
+            <p>
+              Des cahiers et supports éducatifs pensés pour accompagner les
+              enfants dans leurs découvertes et leurs apprentissages.
+            </p>
+          </div>
+
+          <FooterColumn
+            title="Les cahiers"
+            links={[
+              {
+                label: "Mon Busy Book",
+                href: "/produits/mon-busy-book",
+              },
+              {
+                label: "Mon premier imagier",
+                href: "/produits/mon-premier-imagier",
+              },
+              {
+                label: "Fruits & légumes",
+                href: "/produits/mon-premier-imagier-fruits-legumes",
+              },
+              {
+                label: "Animaux & véhicules",
+                href: "/produits/mon-premier-imagier-animaux-vehicules",
+              },
+              {
+                label: "Petite Section",
+                href: "/produits/mon-cahier-d-activites-petite-section",
+              },
+              {
+                label: "Imagier interactif",
+                href: "/produits/mon-premier-imagier-interactif",
+              },
+              {
+                label: "Pack affiches",
+                href: "/produits/pack-affiches-dapprentissage",
+              },
+            ]}
+          />
+
+          <FooterColumn
+            title="Fournitures"
+            links={[
+              {
+                label: "Toutes les fournitures",
+                href: "/fournitures",
+              },
+              {
+                label: "Écriture & dessin",
+                href: "/fournitures",
+              },
+              {
+                label: "Activités créatives",
+                href: "/fournitures",
+              },
+              {
+                label: "Accessoires pour cahiers",
+                href: "/fournitures",
+              },
+            ]}
+          />
+
+          <FooterColumn
+            title="Informations"
+            links={[
+              {
+                label: "Livraison & délais",
+                href: "/livraison",
+              },
+              {
+                label: "Paiement sécurisé",
+                href: "/paiement",
+              },
+            ]}
+          />
+
+          <FooterColumn
+            title="Nous contacter"
+            links={[
+              {
+                label: "Contact",
+                href: "/contact",
+              },
+              {
+                label: "Instagram",
+                href: "https://www.instagram.com/les_cahiers_de_ariam/",
+                external: true,
+              },
+              {
+                label: "FAQ",
+                href: "/faq",
+              },
+            ]}
+          />
         </div>
-      </section>
 
-      {/* FOOTER */}
-      <footer className="footer" id="contact">
-        <div className="container">
-          <div className="footerGrid">
-            <div className="footerBrand">
-              <img
-                src="/logo-ariam.jpeg"
-                alt="Les Cahiers d'Ariam"
-                className="footerLogo"
-              />
+        <div className="footerBottom">
+          <div className="container footerBottomInner">
+            <span>© 2026 Les cahiers d&apos;Ariam</span>
 
-              <p>
-                Des cahiers éducatifs et ludiques pour
-                accompagner les enfants dans leurs
-                premières découvertes.
-              </p>
-            </div>
-
-            <FooterColumn
-              title="Les cahiers"
-              links={[
-                {
-                  label: "Mon Busy Book",
-                  href: "/produits/mon-busy-book",
-                },
-                {
-                  label: "Mon premier imagier",
-                  href: "/produits/mon-premier-imagier",
-                },
-                {
-                  label: "Fruits & légumes",
-                  href: "/produits/mon-premier-imagier-fruits-legumes",
-                },
-                {
-                  label: "Animaux & véhicules",
-                  href: "/produits/mon-premier-imagier-animaux-vehicules",
-                },
-                {
-                  label: "Petite Section",
-                  href: "/produits/mon-cahier-d-activites-petite-section",
-                },
-                {
-                  label: "Imagier interactif",
-                  href: "/produits/mon-premier-imagier-interactif",
-                },
-                {
-                  label: "Pack affiches",
-                  href: "/produits/pack-affiches-dapprentissage",
-                },
-              ]}
-            />
-
-            <FooterColumn
-              title="Informations"
-              links={[
-                {
-                  label: "Livraison & délais",
-                  href: "/livraison",
-                },
-                {
-                  label: "Paiement sécurisé",
-                  href: "/paiement",
-                },
-              ]}
-            />
-
-            <FooterColumn
-              title="Nous contacter"
-              links={[
-                {
-                  label: "Contact",
-                  href: "/contact",
-                },
-                {
-                  label: "Instagram",
-                  href: "https://www.instagram.com/les_cahiers_de_ariam/",
-                },
-                {
-                  label: "FAQ",
-                  href: "/faq",
-                },
-              ]}
-            />
-          </div>
-
-          <div className="footerBottom">
-            <span>
-              © 2026 Les Cahiers de Ariam
-            </span>
-
-            <span>
-              Tous droits réservés
-            </span>
+            <span>Apprendre • manipuler • découvrir</span>
           </div>
         </div>
       </footer>
-    </main>
+    </>
   );
 }
 
@@ -298,55 +347,73 @@ function Benefit({
   text: string;
 }) {
   return (
-    <div className="benefit">
-      <div className="benefitIcon">
-        {number}
-      </div>
+    <div className="benefitItem">
+      <div className="benefitNumber">{number}</div>
 
       <div>
-        <strong>{title}</strong>
-        <span>{text}</span>
+        <h2>{title}</h2>
+        <p>{text}</p>
       </div>
     </div>
   );
 }
 
-function ProductCard({
-  product,
-}: {
-  product: Product;
-}) {
+function ProductCard({ product }: { product: Product }) {
+  const [showSecondImage, setShowSecondImage] = useState(false);
+
+  const displayedImage =
+    showSecondImage && product.secondImage
+      ? product.secondImage
+      : product.image;
+
   return (
-    <article className="realProductCard">
+    <article className="productCard">
       <Link
         href={product.href}
-        className="realProductImageWrap"
+        className="productImageLink"
+        aria-label={product.title}
       >
-        <img
-          src={product.image}
-          alt={product.title}
-          className="realProductImage"
-        />
+        <div className="productImageWrapper">
+          <img
+            src={displayedImage}
+            alt={product.title}
+            className="productImage"
+          />
 
-        {product.badge && (
-          <span className="realProductBadge">
-            {product.badge}
-          </span>
-        )}
+          {product.badge && (
+            <span className="productBadge">{product.badge}</span>
+          )}
+        </div>
       </Link>
 
-      <div className="realProductInfo">
-        <span>{product.age}</span>
+      {product.secondImage && (
+        <div className="productImageControls">
+          <button
+            type="button"
+            className={!showSecondImage ? "imageDot active" : "imageDot"}
+            aria-label="Voir la couverture"
+            onClick={() => setShowSecondImage(false)}
+          />
 
-        <h3>
-          <Link href={product.href}>
-            {product.title}
-          </Link>
-        </h3>
+          <button
+            type="button"
+            className={showSecondImage ? "imageDot active" : "imageDot"}
+            aria-label="Voir l'intérieur"
+            onClick={() => setShowSecondImage(true)}
+          />
+        </div>
+      )}
 
-        <p>{product.subtitle}</p>
+      <div className="productInfo">
+        <p className="productAge">{product.age}</p>
 
-        <Link href={product.href}>
+        <h2>
+          <Link href={product.href}>{product.title}</Link>
+        </h2>
+
+        <p className="productSubtitle">{product.subtitle}</p>
+
+        <Link href={product.href} className="productDiscoverLink">
           Découvrir →
         </Link>
       </div>
@@ -362,39 +429,30 @@ function FooterColumn({
   links: {
     label: string;
     href: string;
+    external?: boolean;
   }[];
 }) {
   return (
     <div className="footerColumn">
-      <h4>{title}</h4>
+      <h2>{title}</h2>
 
-      {links.map((link) =>
-        link.href.startsWith("/") ? (
-          <Link
-            key={link.label}
-            href={link.href}
-          >
-            {link.label}
-          </Link>
-        ) : (
-          <a
-            key={link.label}
-            href={link.href}
-            target={
-              link.href.startsWith("http")
-                ? "_blank"
-                : undefined
-            }
-            rel={
-              link.href.startsWith("http")
-                ? "noopener noreferrer"
-                : undefined
-            }
-          >
-            {link.label}
-          </a>
-        )
-      )}
+      <ul>
+        {links.map((link) => (
+          <li key={`${title}-${link.label}`}>
+            {link.external ? (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link href={link.href}>{link.label}</Link>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -402,8 +460,8 @@ function FooterColumn({
 function SearchIcon() {
   return (
     <svg
-      width="21"
-      height="21"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -421,8 +479,8 @@ function SearchIcon() {
 function AccountIcon() {
   return (
     <svg
-      width="21"
-      height="21"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
